@@ -1,0 +1,17 @@
+{
+  "name": "marketing-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PR and brand marketing portfolio website.",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check app.js && node --check admin.js && node --check admin-login.js && node --check content.js && node --check LiquidEther.js && node --check render.js && node --check server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "marketing",
+    "pr",
+    "branding"
+  ],
+  "license": "UNLICENSED"
+}
