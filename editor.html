@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>포트폴리오 수정 | 유성열</title>
+    <link rel="stylesheet" href="./styles.css?v=20260612-editor15" />
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <section id="editor-panel" class="admin-editor">
+        <div class="admin-hero glass-card">
+          <div>
+            <p class="admin-kicker">Visual Editor</p>
+            <h1>홈페이지 수정</h1>
+            <p>언어별 문구, 소개 아이콘, 프로젝트 카드, 기술스택, 버튼 위치와 추가 페이지를 수정할 수 있습니다.</p>
+          </div>
+          <div class="admin-actions">
+            <a class="button" href="./index.html">홈으로</a>
+            <button class="button" id="save-button" type="button">저장</button>
+            <button class="button" id="logout-button" type="button">로그아웃</button>
+          </div>
+        </div>
+
+        <div class="editor-layout">
+          <aside class="glass-card editor-sidebar">
+            <label class="admin-field">
+              <span>편집 언어</span>
+              <select id="language-select">
+                <option value="ko">한국어</option>
+                <option value="en">English</option>
+              </select>
+            </label>
+            <button class="editor-tab active" data-panel="hero" type="button">첫 화면</button>
+            <button class="editor-tab" data-panel="about" type="button">소개</button>
+            <button class="editor-tab" data-panel="experience" type="button">경력</button>
+            <button class="editor-tab" data-panel="projects" type="button">프로젝트</button>
+            <button class="editor-tab" data-panel="skills" type="button">기술스택</button>
+            <button class="editor-tab" data-panel="layout" type="button">레이아웃/페이지</button>
+            <button class="editor-tab" data-panel="json" type="button">JSON 백업</button>
+          </aside>
+
+          <section class="glass-card admin-panel">
+            <div class="admin-panel-head">
+              <div>
+                <h2 id="panel-title">첫 화면</h2>
+                <p id="panel-desc">문구와 버튼 위치를 수정합니다.</p>
+              </div>
+              <button class="button small-button" id="add-button" type="button" hidden>항목 추가</button>
+            </div>
+            <div id="editor-form"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="./content.js?v=20260612-editor15"></script>
+    <script src="./admin.js?v=20260612-editor15"></script>
+  </body>
+</html>
