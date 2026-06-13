@@ -593,6 +593,34 @@ body[data-theme="light"] .chips span {
   font-weight: 950;
 }
 
+.company-logo-media {
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+body[data-theme="light"] .company-logo-media {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.company-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
+.theme-logo-light {
+  display: none;
+}
+
+body[data-theme="light"] .theme-logo-dark {
+  display: none;
+}
+
+body[data-theme="light"] .theme-logo-light {
+  display: block;
+}
+
 .experience-left h3 {
   margin-bottom: 4px;
 }
@@ -744,6 +772,25 @@ body[data-theme="light"] .project-visual-empty {
 .project-body {
   position: relative;
   padding: 32px;
+}
+
+.project-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-right: 38px;
+}
+
+.project-company-logo {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 11px;
+  font-size: 12px;
+}
+
+.project-company-logo img {
+  padding: 5px;
 }
 
 .project-body h3 {
@@ -915,8 +962,22 @@ body[data-theme="light"] .project-modal-close {
   padding-right: 58px;
 }
 
+.project-modal-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.project-modal-company-logo {
+  width: 54px;
+  height: 54px;
+  flex: 0 0 54px;
+  border-radius: 16px;
+}
+
 .project-modal-head h2 {
-  margin-bottom: 16px;
+  margin-bottom: 0;
   font-size: clamp(26px, 4vw, 36px);
 }
 

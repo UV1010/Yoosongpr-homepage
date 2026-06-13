@@ -5,6 +5,7 @@ window.PORTFOLIO_ADMIN_PASSWORD = 'gksksla0216';
 const sharedProjects = [
   {
     category: 'PR',
+    company: '세방그룹 · 세방(주)',
     visual: 'visual-blue',
     date: '2025.01 - 2025.07',
     title: '세방그룹 PR 광고 캠페인',
@@ -17,6 +18,7 @@ const sharedProjects = [
   },
   {
     category: 'Branding',
+    company: '세방그룹 · 세방(주)',
     visual: 'visual-purple',
     date: '2025.09 - 2026.01',
     title: 'REXTREME 피트니스 레이스',
@@ -29,6 +31,7 @@ const sharedProjects = [
   },
   {
     category: 'Branding',
+    company: '세방그룹 · 세방(주)',
     visual: 'visual-mint',
     date: '2024.11 - 2025.04',
     title: '세방그룹 홈페이지 구축',
@@ -41,6 +44,7 @@ const sharedProjects = [
   },
   {
     category: 'SNS',
+    company: '세방그룹 · 세방(주)',
     visual: 'visual-slate',
     date: '2024.11 - 2025.04',
     title: '로케트배터리 인스타그램 운영',
@@ -53,6 +57,7 @@ const sharedProjects = [
   },
   {
     category: 'Design',
+    company: '일양약품(주)',
     visual: 'visual-light',
     date: '2017.02 - 2024.05',
     title: '일양약품 제품 디자인',
@@ -65,6 +70,7 @@ const sharedProjects = [
   },
   {
     category: 'AI / DX',
+    company: '세방그룹 · 세방(주)',
     visual: 'visual-ai',
     date: '2025',
     title: 'AI 업무 자동화 프로세스',
@@ -159,6 +165,8 @@ window.DEFAULT_SITE_CONTENT = {
           role: '그룹 브랜드실 / 선임',
           period: '2024.05 - 재직 중',
           logo: 'SB',
+          logoDark: '',
+          logoLight: '',
           summary: '물류, 운송, 항만, 배터리 제조업 기반 그룹의 PR, 브랜드 기획, 광고, 홈페이지, AI 업무 개선을 담당합니다.',
           highlights: ['그룹 PR 광고 캠페인', '브랜드 프로모션', '홈페이지 구축', 'AI 업무 자동화'],
           blocks: [
@@ -171,6 +179,8 @@ window.DEFAULT_SITE_CONTENT = {
           role: '홍보팀 / 대리',
           period: '2017.02 - 2024.05',
           logo: 'IY',
+          logoDark: '',
+          logoLight: '',
           summary: '제약·건강기능식품 기업의 홍보, 브랜드 디자인, 언론홍보, 사내 홍보를 담당했습니다.',
           highlights: ['광고 심의', '제품 디자인', '언론홍보', '사보 기획'],
           blocks: [
@@ -245,8 +255,8 @@ window.DEFAULT_SITE_CONTENT = {
       title: 'Experience',
       subtitle: '9+ years in PR and brand marketing',
       items: [
-        { company: 'Sebang Group · Sebang Co., Ltd.', role: 'Senior Manager / Group Brand Office', period: 'May 2024 - Present', logo: 'SB', summary: 'Responsible for group PR, brand planning, advertising, website operations, and AI process improvement across logistics, transport, ports, and battery businesses.', highlights: ['Group PR campaigns', 'Brand promotion', 'Website renewal', 'AI automation'], blocks: [{ title: 'Group PR & Advertising', body: 'Managed agency selection, competitive pitching, budget/timeline control, taxi OOH, YouTube, and TVC advertising.', bullets: ['Approx. 200 taxis in Seoul for 3 months', 'About 7.25M YouTube views', 'TVC GRP 852 achieved'] }] },
-        { company: 'Ilyang Pharmaceutical Co., Ltd.', role: 'Assistant Manager / PR Team', period: 'Feb 2017 - May 2024', logo: 'IY', summary: 'Handled PR, brand design, media relations, and internal communications for pharmaceutical and health supplement products.', highlights: ['Ad review', 'Product design', 'Media relations', 'Internal magazine'], blocks: [{ title: 'PR & Ad Review', body: 'Reviewed regulatory compliance for OTC, health supplement promotional materials, landing pages, and sales materials.', bullets: ['OTC and supplement ad review', 'Radio ad production management', 'OOH signage permit management'] }] }
+        { company: 'Sebang Group · Sebang Co., Ltd.', role: 'Senior Manager / Group Brand Office', period: 'May 2024 - Present', logo: 'SB', logoDark: '', logoLight: '', summary: 'Responsible for group PR, brand planning, advertising, website operations, and AI process improvement across logistics, transport, ports, and battery businesses.', highlights: ['Group PR campaigns', 'Brand promotion', 'Website renewal', 'AI automation'], blocks: [{ title: 'Group PR & Advertising', body: 'Managed agency selection, competitive pitching, budget/timeline control, taxi OOH, YouTube, and TVC advertising.', bullets: ['Approx. 200 taxis in Seoul for 3 months', 'About 7.25M YouTube views', 'TVC GRP 852 achieved'] }] },
+        { company: 'Ilyang Pharmaceutical Co., Ltd.', role: 'Assistant Manager / PR Team', period: 'Feb 2017 - May 2024', logo: 'IY', logoDark: '', logoLight: '', summary: 'Handled PR, brand design, media relations, and internal communications for pharmaceutical and health supplement products.', highlights: ['Ad review', 'Product design', 'Media relations', 'Internal magazine'], blocks: [{ title: 'PR & Ad Review', body: 'Reviewed regulatory compliance for OTC, health supplement promotional materials, landing pages, and sales materials.', bullets: ['OTC and supplement ad review', 'Radio ad production management', 'OOH signage permit management'] }] }
       ]
     },
     projects: {
@@ -254,12 +264,12 @@ window.DEFAULT_SITE_CONTENT = {
       subtitle: 'Selected outcomes by category',
       categories: ['PR', 'Branding', 'SNS', 'Design', 'AI / DX'],
       items: [
-        { category: 'PR', visual: 'visual-blue', date: '2025.01 - 2025.07', title: 'Sebang Group PR Campaign', role: 'Group PR campaign operations', body: 'Managed agency selection, competitive pitching, budget and schedule control, internal reporting, and YouTube/TVC/taxi OOH execution.', chips: ['Group PR', 'YouTube', 'TVC', 'OOH'], tasks: ['Managed agency selection and competitive pitching', 'Operated YouTube, TVC, and taxi OOH campaigns', 'Controlled budgets, timelines, and internal reporting'], results: ['44.89M YouTube impressions', 'About 7.25M views', '280% above target'], bullets: ['44.89M YouTube impressions', 'About 7.25M views', '280% above target'] },
-        { category: 'Branding', visual: 'visual-purple', date: '2025.09 - 2026.01', title: 'REXTREME Fitness Race', role: 'Brand promotion planning', body: 'Planned a Rocket Battery sports marketing promotion including concept, logo, design guide, agency selection, and sponsor coordination.', chips: ['Sports Marketing', 'Brand Design', 'Promotion'], tasks: ['Planned event concept, logo, and design guide', 'Managed agency selection and sponsor coordination', 'Controlled operating budget and field execution plan'], results: ['Approx. 1,000 participants', '10 sponsors secured', 'About KRW 100M operating budget saved'], bullets: ['Approx. 1,000 participants', '10 sponsors secured', 'About KRW 100M operating budget saved'] },
-        { category: 'Branding', visual: 'visual-mint', date: '2024.11 - 2025.04', title: 'Sebang Group Website Renewal', role: 'Brand website planning', body: 'Led website concept, roadmap, content collection, copywriting, design review, and media center operating reports.', chips: ['Website', 'Content', 'Brand UX'], tasks: ['Defined website concept and roadmap', 'Collected company information and wrote copy', 'Reviewed design tone and operated the media center'], results: ['Approx. 5,000 monthly visitors', 'I-AWARD 2025 winner', 'Media center content management'], bullets: ['Approx. 5,000 monthly visitors', 'I-AWARD 2025 winner', 'Media center content management'] },
-        { category: 'SNS', visual: 'visual-slate', date: '2024.11 - 2025.04', title: 'Rocket Battery Instagram Operations', role: 'SNS channel strategy', body: 'Built channel concept, operating strategy, content and event plans, Meta ad operations, and monthly reporting.', chips: ['Instagram', 'Meta Ads', 'Content'], tasks: ['Built SNS channel concept and operating strategy', 'Planned content, events, and Meta ad operations', 'Produced monthly performance reports'], results: ['Operated for 5 months without an agency', 'Secured about 5,000 followers'], bullets: ['Operated for 5 months without an agency', 'Secured about 5,000 followers'] },
-        { category: 'Design', visual: 'visual-light', date: '2017.02 - 2024.05', title: 'Ilyang Product Design', role: 'Package and promotional design', body: 'Designed OTC/ETC pharmaceutical, health supplement, drink packages, brochures, exhibitions, and symposium materials.', chips: ['Package', 'CI/BI', 'Print'], tasks: ['Designed pharmaceutical and supplement packages', 'Produced brochures, exhibitions, and symposium materials', 'Reviewed labels and supervised print proofing'], results: ['10+ new product designs per year', 'Print proofing and production review'], bullets: ['10+ new product designs per year', 'Print proofing and production review'] },
-        { category: 'AI / DX', visual: 'visual-ai', date: '2025', title: 'AI Work Automation Process', role: 'Digital transformation', body: 'Participated in AI automation for material inventory checks, purchase order generation, bonded transport dispatch, and UNI-PASS reporting.', chips: ['AI Automation', 'Process', 'DX'], tasks: ['Defined automation target processes', 'Produced AI usage guides and internal content', 'Supported inventory, order, dispatch, and reporting process improvement'], results: ['AI usage guide production', 'Internal card news production'], bullets: ['AI usage guide production', 'Internal card news production'] }
+        { category: 'PR', company: 'Sebang Group · Sebang Co., Ltd.', visual: 'visual-blue', date: '2025.01 - 2025.07', title: 'Sebang Group PR Campaign', role: 'Group PR campaign operations', body: 'Managed agency selection, competitive pitching, budget and schedule control, internal reporting, and YouTube/TVC/taxi OOH execution.', chips: ['Group PR', 'YouTube', 'TVC', 'OOH'], tasks: ['Managed agency selection and competitive pitching', 'Operated YouTube, TVC, and taxi OOH campaigns', 'Controlled budgets, timelines, and internal reporting'], results: ['44.89M YouTube impressions', 'About 7.25M views', '280% above target'], bullets: ['44.89M YouTube impressions', 'About 7.25M views', '280% above target'] },
+        { category: 'Branding', company: 'Sebang Group · Sebang Co., Ltd.', visual: 'visual-purple', date: '2025.09 - 2026.01', title: 'REXTREME Fitness Race', role: 'Brand promotion planning', body: 'Planned a Rocket Battery sports marketing promotion including concept, logo, design guide, agency selection, and sponsor coordination.', chips: ['Sports Marketing', 'Brand Design', 'Promotion'], tasks: ['Planned event concept, logo, and design guide', 'Managed agency selection and sponsor coordination', 'Controlled operating budget and field execution plan'], results: ['Approx. 1,000 participants', '10 sponsors secured', 'About KRW 100M operating budget saved'], bullets: ['Approx. 1,000 participants', '10 sponsors secured', 'About KRW 100M operating budget saved'] },
+        { category: 'Branding', company: 'Sebang Group · Sebang Co., Ltd.', visual: 'visual-mint', date: '2024.11 - 2025.04', title: 'Sebang Group Website Renewal', role: 'Brand website planning', body: 'Led website concept, roadmap, content collection, copywriting, design review, and media center operating reports.', chips: ['Website', 'Content', 'Brand UX'], tasks: ['Defined website concept and roadmap', 'Collected company information and wrote copy', 'Reviewed design tone and operated the media center'], results: ['Approx. 5,000 monthly visitors', 'I-AWARD 2025 winner', 'Media center content management'], bullets: ['Approx. 5,000 monthly visitors', 'I-AWARD 2025 winner', 'Media center content management'] },
+        { category: 'SNS', company: 'Sebang Group · Sebang Co., Ltd.', visual: 'visual-slate', date: '2024.11 - 2025.04', title: 'Rocket Battery Instagram Operations', role: 'SNS channel strategy', body: 'Built channel concept, operating strategy, content and event plans, Meta ad operations, and monthly reporting.', chips: ['Instagram', 'Meta Ads', 'Content'], tasks: ['Built SNS channel concept and operating strategy', 'Planned content, events, and Meta ad operations', 'Produced monthly performance reports'], results: ['Operated for 5 months without an agency', 'Secured about 5,000 followers'], bullets: ['Operated for 5 months without an agency', 'Secured about 5,000 followers'] },
+        { category: 'Design', company: 'Ilyang Pharmaceutical Co., Ltd.', visual: 'visual-light', date: '2017.02 - 2024.05', title: 'Ilyang Product Design', role: 'Package and promotional design', body: 'Designed OTC/ETC pharmaceutical, health supplement, drink packages, brochures, exhibitions, and symposium materials.', chips: ['Package', 'CI/BI', 'Print'], tasks: ['Designed pharmaceutical and supplement packages', 'Produced brochures, exhibitions, and symposium materials', 'Reviewed labels and supervised print proofing'], results: ['10+ new product designs per year', 'Print proofing and production review'], bullets: ['10+ new product designs per year', 'Print proofing and production review'] },
+        { category: 'AI / DX', company: 'Sebang Group · Sebang Co., Ltd.', visual: 'visual-ai', date: '2025', title: 'AI Work Automation Process', role: 'Digital transformation', body: 'Participated in AI automation for material inventory checks, purchase order generation, bonded transport dispatch, and UNI-PASS reporting.', chips: ['AI Automation', 'Process', 'DX'], tasks: ['Defined automation target processes', 'Produced AI usage guides and internal content', 'Supported inventory, order, dispatch, and reporting process improvement'], results: ['AI usage guide production', 'Internal card news production'], bullets: ['AI usage guide production', 'Internal card news production'] }
       ]
     },
     skills: {

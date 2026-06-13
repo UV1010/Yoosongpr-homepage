@@ -36,8 +36,10 @@
     ['ko', 'en'].forEach(contentLang => {
       const defaultProjects = defaults?.[contentLang]?.projects?.items || [];
       const defaultByTitle = new Map(defaultProjects.map(project => [project.title, project]));
+      const fallbackCompany = siteContent[contentLang]?.experience?.items?.[0]?.company || '';
       (siteContent[contentLang]?.projects?.items || []).forEach(project => {
         const defaultProject = defaultByTitle.get(project.title);
+        if (!project.company) project.company = defaultProject?.company || fallbackCompany;
         if (!Array.isArray(project.tasks) || !project.tasks.length) {
           project.tasks = Array.isArray(defaultProject?.tasks) ? defaultProject.tasks : [];
         }
@@ -83,6 +85,30 @@
     const values = (items || []).filter(Boolean);
     if (!values.length) return '';
     return `<div class="card-tags">${values.map(item => `<span>${escapeHtml(item)}</span>`).join('')}</div>`;
+  }
+
+  function companyLogo(company, className = '') {
+    if (!company) return '';
+    const fallback = company.logo || company.company?.slice(0, 2) || '';
+    const darkLogo = company.logoDark || company.logoLight || '';
+    const lightLogo = company.logoLight || company.logoDark || '';
+    if (!darkLogo && !lightLogo) {
+      return `<span class="company-logo ${className}"><span>${escapeHtml(fallback)}</span></span>`;
+    }
+    return `
+      <span class="company-logo company-logo-media ${className}" aria-label="${escapeHtml(company.company || fallback)} 로고">
+        ${darkLogo ? `<img class="theme-logo theme-logo-dark" src="${escapeHtml(darkLogo)}" alt="" loading="lazy" />` : ''}
+        ${lightLogo ? `<img class="theme-logo theme-logo-light" src="${escapeHtml(lightLogo)}" alt="" loading="lazy" />` : ''}
+      </span>
+    `;
+  }
+
+  function getProjectCompany(item, data) {
+    const companies = data.experience?.items || [];
+    const selected = companies.find(company => company.company === item.company);
+    if (selected) return selected;
+    const defaultCompany = companies.find(company => company.company && item.title?.includes(company.company.split(' ')[0]));
+    return defaultCompany || companies[0] || null;
   }
 
   function getYouTubeId(url) {
@@ -145,7 +171,7 @@
             .map(item => `
               <article class="glass-card experience-card">
                 <div class="experience-left">
-                  <span class="company-logo">${escapeHtml(item.logo || item.company?.slice(0, 2) || '')}</span>
+                  ${companyLogo(item)}
                   <div>
                     <h3>${escapeHtml(item.company)}</h3>
                     <p>${escapeHtml(item.role)}</p>
@@ -175,13 +201,17 @@
     `;
   }
 
-  function projectCard(item, index) {
+  function projectCard(item, index, data) {
+    const company = getProjectCompany(item, data);
     return `
       <article class="glass-card project-card" data-project-card="${index}" tabindex="0" role="button" aria-label="${escapeHtml(item.title)} 상세 보기">
         ${renderProjectThumb(item)}
         <div class="project-body">
           <button class="project-open" data-project-open="${index}" type="button" aria-label="${escapeHtml(item.title)} 상세 보기">↗</button>
-          <h3>${escapeHtml(item.title)}</h3>
+          <div class="project-title-row">
+            ${companyLogo(company, 'project-company-logo')}
+            <h3>${escapeHtml(item.title)}</h3>
+          </div>
           <p>${escapeHtml(item.body)}</p>
           ${chips(item.chips)}
         </div>
@@ -246,7 +276,7 @@
               return `
                 <div class="project-track ${index === 0 ? 'active' : ''}" data-project-panel="${escapeHtml(category)}">
                   <div class="project-pages">
-                    ${pages.map(page => `<div class="project-page">${page.map(entry => projectCard(entry.item, entry.itemIndex)).join('')}</div>`).join('')}
+                    ${pages.map(page => `<div class="project-page">${page.map(entry => projectCard(entry.item, entry.itemIndex, data)).join('')}</div>`).join('')}
                   </div>
                   <div class="project-controls">
                     <button type="button" data-project-prev>${escapeHtml(data.ui.projectPrev)}</button>
@@ -328,6 +358,7 @@
   }
 
   function renderProjectModalContent(item, data) {
+    const company = getProjectCompany(item, data);
     const meta = [item.role, item.date, item.category].filter(Boolean);
     const resultTitle = lang === 'en' ? 'Outcomes' : '성과';
     const workTitle = lang === 'en' ? 'Key Responsibilities' : '주요 업무';
@@ -335,7 +366,10 @@
     const stackTitle = lang === 'en' ? 'Stack / Scope' : '기술 스택 / 범위';
     return `
       <header class="project-modal-head">
-        <h2 id="project-modal-title">${escapeHtml(item.title)}</h2>
+        <div class="project-modal-title-row">
+          ${companyLogo(company, 'project-modal-company-logo')}
+          <h2 id="project-modal-title">${escapeHtml(item.title)}</h2>
+        </div>
         <div class="project-modal-meta">
           ${meta.map(value => `<span>${escapeHtml(value)}</span>`).join('')}
         </div>

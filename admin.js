@@ -47,8 +47,10 @@
     ['ko', 'en'].forEach(lang => {
       const defaultProjects = window.DEFAULT_SITE_CONTENT?.[lang]?.projects?.items || [];
       const defaultByTitle = new Map(defaultProjects.map(project => [project.title, project]));
+      const fallbackCompany = siteContent[lang]?.experience?.items?.[0]?.company || '';
       (siteContent[lang]?.projects?.items || []).forEach(project => {
         const defaultProject = defaultByTitle.get(project.title);
+        if (!project.company) project.company = defaultProject?.company || fallbackCompany;
         if (!Array.isArray(project.tasks) || !project.tasks.length) {
           project.tasks = Array.isArray(defaultProject?.tasks) ? defaultProject.tasks : [];
         }
@@ -125,11 +127,12 @@
 
   function selectField(label, path, options) {
     const value = getByPath(path);
+    const values = [...new Set([value, ...(options || [])].filter(Boolean))];
     return `
       <label class="admin-field">
         <span>${label}</span>
         <select data-path="${path}">
-          ${options.map(option => `<option value="${option}" ${option === value ? 'selected' : ''}>${option}</option>`).join('')}
+          ${values.map(option => `<option value="${escapeHtml(option)}" ${option === value ? 'selected' : ''}>${escapeHtml(option)}</option>`).join('')}
         </select>
       </label>
     `;
@@ -146,12 +149,16 @@
     `;
   }
 
-  function fileField(label, path) {
+  function fileField(label, path, options = {}) {
+    const accept = options.accept || 'image/*,video/mp4,video/webm,video/ogg';
+    const multiple = options.multiple === false ? '' : ' multiple';
+    const mode = options.multiple === false ? ' data-media-single="true"' : '';
+    const helper = options.helper || '사진 또는 영상을 선택하면 assets/project-media 폴더에 저장되고 상세 미디어 목록에 자동 추가됩니다.';
     return `
       <label class="admin-field file-field">
         <span>${label}</span>
-        <input type="file" data-media-upload="${path}" accept="image/*,video/mp4,video/webm,video/ogg" multiple />
-        <small>사진 또는 영상을 선택하면 assets/project-media 폴더에 저장되고 상세 미디어 목록에 자동 추가됩니다.</small>
+        <input type="file" data-media-upload="${path}"${mode} accept="${accept}"${multiple} />
+        <small>${helper}</small>
       </label>
     `;
   }
@@ -210,7 +217,7 @@
     if (config.kind === 'textarea') return field(config.label, `${path}.${config.key}`, 'textarea');
     if (config.kind === 'array') return arrayField(config.label, `${path}.${config.key}`);
     if (config.kind === 'select') return selectField(config.label, `${path}.${config.key}`, config.options);
-    if (config.kind === 'file') return fileField(config.label, `${path}.${config.key}`);
+    if (config.kind === 'file') return fileField(config.label, `${path}.${config.key}`, config);
     return field(config.label, `${path}.${config.key}`);
   }
 
@@ -271,7 +278,8 @@
       <div class="editor-grid">${field('섹션 제목', `${lang}.experience.title`)}${field('서브타이틀', `${lang}.experience.subtitle`)}</div>
       ${(content[lang].experience.items || []).map((_, index) =>
         cardEditor(_, `${lang}.experience.items.${index}`, [
-          { label: '회사 로고 텍스트', key: 'logo' },
+          { label: '다크모드 회사 로고', key: 'logoDark', kind: 'file', accept: 'image/*', multiple: false, helper: '다크모드에서 보일 회사 로고 이미지를 업로드합니다.' },
+          { label: '화이트모드 회사 로고', key: 'logoLight', kind: 'file', accept: 'image/*', multiple: false, helper: '화이트모드에서 보일 회사 로고 이미지를 업로드합니다.' },
           { label: '회사명', key: 'company' },
           { label: '직급/부서', key: 'role' },
           { label: '기간', key: 'period' },
@@ -287,6 +295,7 @@
   function renderProjects() {
     const lang = getLang();
     sortProjectItems(content[lang].projects);
+    const companyOptions = (content[lang].experience.items || []).map(item => item.company).filter(Boolean);
     form.innerHTML = `
       <div class="editor-grid">
         ${field('섹션 제목', `${lang}.projects.title`)}
@@ -296,6 +305,7 @@
       ${(content[lang].projects.items || []).map((_, index) =>
         projectEditor(_, `${lang}.projects.items.${index}`, [
           { label: '카테고리', key: 'category' },
+          { label: '회사 선택', key: 'company', kind: 'select', options: companyOptions },
           { label: '기간', key: 'date' },
           { label: '제목', key: 'title' },
           { label: '역할', key: 'role' },
@@ -385,8 +395,8 @@
     const lang = getLang();
     const templates = {
       about: { icon: '◈', tags: ['Tag'], title: '새 소개 카드', body: '설명을 입력하세요.', bullets: ['성과를 입력하세요.'] },
-      experience: { company: '새 회사', role: '직무', period: '기간', logo: 'N', summary: '요약을 입력하세요.', highlights: ['핵심 업무'], blocks: [] },
-      projects: { category: content[lang].projects.categories[0] || 'PR', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], tasks: ['주요 업무'], results: ['성과'] },
+      experience: { company: '새 회사', role: '직무', period: '기간', logo: 'N', logoDark: '', logoLight: '', summary: '요약을 입력하세요.', highlights: ['핵심 업무'], blocks: [] },
+      projects: { category: content[lang].projects.categories[0] || 'PR', company: content[lang].experience.items?.[0]?.company || '', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], tasks: ['주요 업무'], results: ['성과'] },
       skills: { icon: '⌁', title: '새 기술스택', chips: ['항목'] },
       layout: { id: `page-${Date.now()}`, title: '새 페이지', subtitle: '서브타이틀', body: '본문을 입력하세요.', enabled: true }
     };
@@ -435,7 +445,11 @@
     collect();
     const media = getByPath(uploadPath) || [];
     Promise.all(files.map(uploadFile)).then(urls => {
-      setByPath(uploadPath, media.concat(urls));
+      if (event.target.dataset.mediaSingle === 'true') {
+        setByPath(uploadPath, urls[0] || '');
+      } else {
+        setByPath(uploadPath, Array.isArray(media) ? media.concat(urls) : urls);
+      }
       renderActive();
       alert('첨부한 파일을 assets/project-media 폴더에 저장했습니다. 저장 버튼을 눌러 반영해주세요.');
     }).catch(() => {
