@@ -11,6 +11,8 @@ const sharedProjects = [
     role: '그룹 PR 광고 운영',
     body: '대행사 선정, 경쟁 PT, 예산·일정 관리, 내부 보고, YouTube/TVC/택시 광고 집행까지 PR 캠페인 전 과정을 운영했습니다.',
     chips: ['Group PR', 'YouTube', 'TVC', 'OOH'],
+    tasks: ['대행사 선정 및 경쟁 PT 운영', 'YouTube/TVC/택시 광고 집행 관리', '예산·일정 관리 및 내부 보고자료 작성'],
+    results: ['YouTube 노출 4,489만 건', '조회수 약 725만 건', '목표 대비 280% 초과 달성'],
     bullets: ['YouTube 노출 4,489만 건', '조회수 약 725만 건', '목표 대비 280% 초과 달성']
   },
   {
@@ -21,6 +23,8 @@ const sharedProjects = [
     role: '브랜드 프로모션 기획',
     body: '로케트배터리 스포츠 마케팅 프로모션으로 콘셉트, 로고, 디자인 가이드, 대행사 선정과 후원사 협의를 진행했습니다.',
     chips: ['Sports Marketing', 'Brand Design', 'Promotion'],
+    tasks: ['행사 콘셉트 및 로고/디자인 가이드 기획', '대행사 선정과 후원사 협의 진행', '운영 예산과 현장 실행 계획 관리'],
+    results: ['약 1,000명 참여', '10개 후원사 섭외', '약 1억 원 운영 예산 절감'],
     bullets: ['약 1,000명 참여', '10개 후원사 섭외', '약 1억 원 운영 예산 절감']
   },
   {
@@ -31,6 +35,8 @@ const sharedProjects = [
     role: '브랜드 웹사이트 기획',
     body: '홈페이지 콘셉트와 로드맵 설정, 정보 취합, 원고 작성, 디자인 톤앤매너 감리, 미디어센터 운영 리포트를 담당했습니다.',
     chips: ['Website', 'Content', 'Brand UX'],
+    tasks: ['홈페이지 콘셉트와 구축 로드맵 수립', '계열사 정보 취합 및 원고 작성', '디자인 톤앤매너 감리와 미디어센터 운영'],
+    results: ['월평균 약 5,000명 방문', 'I-AWARD 2025 중견기업 부문 대상', '미디어센터 콘텐츠 관리'],
     bullets: ['월평균 약 5,000명 방문', 'I-AWARD 2025 중견기업 부문 대상', '미디어센터 콘텐츠 관리']
   },
   {
@@ -41,6 +47,8 @@ const sharedProjects = [
     role: 'SNS 채널 전략',
     body: 'SNS 채널 콘셉트와 운영전략, 콘텐츠·이벤트 기획, 메타 광고 운영, 월간 운영 리포트 작성을 담당했습니다.',
     chips: ['Instagram', 'Meta Ads', 'Content'],
+    tasks: ['SNS 채널 콘셉트와 운영전략 수립', '콘텐츠·이벤트 기획 및 메타 광고 운영', '월간 운영 리포트 작성'],
+    results: ['외주사 없이 약 5개월 운영', '팔로워 약 5,000명 확보'],
     bullets: ['외주사 없이 약 5개월 운영', '팔로워 약 5,000명 확보']
   },
   {
@@ -51,6 +59,8 @@ const sharedProjects = [
     role: '패키지·홍보물 디자인',
     body: 'OTC/ETC 의약품, 건강기능식품, 드링크 제품 패키지와 브로셔, 전시·심포지엄 홍보물을 기획하고 디자인했습니다.',
     chips: ['Package', 'CI/BI', 'Print'],
+    tasks: ['의약품·건강기능식품 패키지 디자인', '브로셔·전시·심포지엄 홍보물 제작', '표기사항 검토와 인쇄 교정 감리'],
+    results: ['연평균 10개 이상 신제품 디자인', '인쇄 교정 및 감리 진행'],
     bullets: ['연평균 10개 이상 신제품 디자인', '인쇄 교정 및 감리 진행']
   },
   {
@@ -61,6 +71,8 @@ const sharedProjects = [
     role: 'DT 추진',
     body: '자재 재고 현황 파악, 발주서 생성, 보세운송차량 배차와 유니패스 신고 업무의 AI 자동화 프로세스 구축에 참여했습니다.',
     chips: ['AI Automation', 'Process', 'DX'],
+    tasks: ['업무 자동화 대상 프로세스 정의', 'AI 활용 가이드와 내부 콘텐츠 제작', '자재·발주·배차·신고 업무 개선 참여'],
+    results: ['AI 활용 가이드 제작', '카드뉴스 제작 및 게시'],
     bullets: ['AI 활용 가이드 제작', '카드뉴스 제작 및 게시']
   }
 ];
@@ -242,12 +254,12 @@ window.DEFAULT_SITE_CONTENT = {
       subtitle: 'Selected outcomes by category',
       categories: ['PR', 'Branding', 'SNS', 'Design', 'AI / DX'],
       items: [
-        { category: 'PR', visual: 'visual-blue', date: '2025.01 - 2025.07', title: 'Sebang Group PR Campaign', role: 'Group PR campaign operations', body: 'Managed agency selection, competitive pitching, budget and schedule control, internal reporting, and YouTube/TVC/taxi OOH execution.', chips: ['Group PR', 'YouTube', 'TVC', 'OOH'], bullets: ['44.89M YouTube impressions', 'About 7.25M views', '280% above target'] },
-        { category: 'Branding', visual: 'visual-purple', date: '2025.09 - 2026.01', title: 'REXTREME Fitness Race', role: 'Brand promotion planning', body: 'Planned a Rocket Battery sports marketing promotion including concept, logo, design guide, agency selection, and sponsor coordination.', chips: ['Sports Marketing', 'Brand Design', 'Promotion'], bullets: ['Approx. 1,000 participants', '10 sponsors secured', 'About KRW 100M operating budget saved'] },
-        { category: 'Branding', visual: 'visual-mint', date: '2024.11 - 2025.04', title: 'Sebang Group Website Renewal', role: 'Brand website planning', body: 'Led website concept, roadmap, content collection, copywriting, design review, and media center operating reports.', chips: ['Website', 'Content', 'Brand UX'], bullets: ['Approx. 5,000 monthly visitors', 'I-AWARD 2025 winner', 'Media center content management'] },
-        { category: 'SNS', visual: 'visual-slate', date: '2024.11 - 2025.04', title: 'Rocket Battery Instagram Operations', role: 'SNS channel strategy', body: 'Built channel concept, operating strategy, content and event plans, Meta ad operations, and monthly reporting.', chips: ['Instagram', 'Meta Ads', 'Content'], bullets: ['Operated for 5 months without an agency', 'Secured about 5,000 followers'] },
-        { category: 'Design', visual: 'visual-light', date: '2017.02 - 2024.05', title: 'Ilyang Product Design', role: 'Package and promotional design', body: 'Designed OTC/ETC pharmaceutical, health supplement, drink packages, brochures, exhibitions, and symposium materials.', chips: ['Package', 'CI/BI', 'Print'], bullets: ['10+ new product designs per year', 'Print proofing and production review'] },
-        { category: 'AI / DX', visual: 'visual-ai', date: '2025', title: 'AI Work Automation Process', role: 'Digital transformation', body: 'Participated in AI automation for material inventory checks, purchase order generation, bonded transport dispatch, and UNI-PASS reporting.', chips: ['AI Automation', 'Process', 'DX'], bullets: ['AI usage guide production', 'Internal card news production'] }
+        { category: 'PR', visual: 'visual-blue', date: '2025.01 - 2025.07', title: 'Sebang Group PR Campaign', role: 'Group PR campaign operations', body: 'Managed agency selection, competitive pitching, budget and schedule control, internal reporting, and YouTube/TVC/taxi OOH execution.', chips: ['Group PR', 'YouTube', 'TVC', 'OOH'], tasks: ['Managed agency selection and competitive pitching', 'Operated YouTube, TVC, and taxi OOH campaigns', 'Controlled budgets, timelines, and internal reporting'], results: ['44.89M YouTube impressions', 'About 7.25M views', '280% above target'], bullets: ['44.89M YouTube impressions', 'About 7.25M views', '280% above target'] },
+        { category: 'Branding', visual: 'visual-purple', date: '2025.09 - 2026.01', title: 'REXTREME Fitness Race', role: 'Brand promotion planning', body: 'Planned a Rocket Battery sports marketing promotion including concept, logo, design guide, agency selection, and sponsor coordination.', chips: ['Sports Marketing', 'Brand Design', 'Promotion'], tasks: ['Planned event concept, logo, and design guide', 'Managed agency selection and sponsor coordination', 'Controlled operating budget and field execution plan'], results: ['Approx. 1,000 participants', '10 sponsors secured', 'About KRW 100M operating budget saved'], bullets: ['Approx. 1,000 participants', '10 sponsors secured', 'About KRW 100M operating budget saved'] },
+        { category: 'Branding', visual: 'visual-mint', date: '2024.11 - 2025.04', title: 'Sebang Group Website Renewal', role: 'Brand website planning', body: 'Led website concept, roadmap, content collection, copywriting, design review, and media center operating reports.', chips: ['Website', 'Content', 'Brand UX'], tasks: ['Defined website concept and roadmap', 'Collected company information and wrote copy', 'Reviewed design tone and operated the media center'], results: ['Approx. 5,000 monthly visitors', 'I-AWARD 2025 winner', 'Media center content management'], bullets: ['Approx. 5,000 monthly visitors', 'I-AWARD 2025 winner', 'Media center content management'] },
+        { category: 'SNS', visual: 'visual-slate', date: '2024.11 - 2025.04', title: 'Rocket Battery Instagram Operations', role: 'SNS channel strategy', body: 'Built channel concept, operating strategy, content and event plans, Meta ad operations, and monthly reporting.', chips: ['Instagram', 'Meta Ads', 'Content'], tasks: ['Built SNS channel concept and operating strategy', 'Planned content, events, and Meta ad operations', 'Produced monthly performance reports'], results: ['Operated for 5 months without an agency', 'Secured about 5,000 followers'], bullets: ['Operated for 5 months without an agency', 'Secured about 5,000 followers'] },
+        { category: 'Design', visual: 'visual-light', date: '2017.02 - 2024.05', title: 'Ilyang Product Design', role: 'Package and promotional design', body: 'Designed OTC/ETC pharmaceutical, health supplement, drink packages, brochures, exhibitions, and symposium materials.', chips: ['Package', 'CI/BI', 'Print'], tasks: ['Designed pharmaceutical and supplement packages', 'Produced brochures, exhibitions, and symposium materials', 'Reviewed labels and supervised print proofing'], results: ['10+ new product designs per year', 'Print proofing and production review'], bullets: ['10+ new product designs per year', 'Print proofing and production review'] },
+        { category: 'AI / DX', visual: 'visual-ai', date: '2025', title: 'AI Work Automation Process', role: 'Digital transformation', body: 'Participated in AI automation for material inventory checks, purchase order generation, bonded transport dispatch, and UNI-PASS reporting.', chips: ['AI Automation', 'Process', 'DX'], tasks: ['Defined automation target processes', 'Produced AI usage guides and internal content', 'Supported inventory, order, dispatch, and reporting process improvement'], results: ['AI usage guide production', 'Internal card news production'], bullets: ['AI usage guide production', 'Internal card news production'] }
       ]
     },
     skills: {

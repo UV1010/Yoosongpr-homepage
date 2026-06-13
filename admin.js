@@ -45,9 +45,20 @@
 
   function normalizeContent(siteContent) {
     ['ko', 'en'].forEach(lang => {
+      const defaultProjects = window.DEFAULT_SITE_CONTENT?.[lang]?.projects?.items || [];
+      const defaultByTitle = new Map(defaultProjects.map(project => [project.title, project]));
       (siteContent[lang]?.projects?.items || []).forEach(project => {
-        if (!Array.isArray(project.tasks)) project.tasks = [];
-        if (!Array.isArray(project.results)) project.results = Array.isArray(project.bullets) ? project.bullets : [];
+        const defaultProject = defaultByTitle.get(project.title);
+        if (!Array.isArray(project.tasks) || !project.tasks.length) {
+          project.tasks = Array.isArray(defaultProject?.tasks) ? defaultProject.tasks : [];
+        }
+        if (!Array.isArray(project.results) || !project.results.length) {
+          project.results = Array.isArray(project.bullets) && project.bullets.length
+            ? project.bullets
+            : Array.isArray(defaultProject?.results)
+              ? defaultProject.results
+              : [];
+        }
         if (!Array.isArray(project.bullets)) project.bullets = project.results;
       });
     });

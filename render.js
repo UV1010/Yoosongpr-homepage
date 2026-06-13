@@ -20,15 +20,37 @@
 
   function getAllContent() {
     try {
+      const defaults = clone(window.DEFAULT_SITE_CONTENT);
       const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
       if (saved && (!saved.ko || !saved.en || !saved.settings)) {
         localStorage.removeItem(storageKey);
-        return clone(window.DEFAULT_SITE_CONTENT);
+        return defaults;
       }
-      return merge(clone(window.DEFAULT_SITE_CONTENT), saved);
+      return normalizeProjectSections(merge(defaults, saved), window.DEFAULT_SITE_CONTENT);
     } catch {
       return clone(window.DEFAULT_SITE_CONTENT);
     }
+  }
+
+  function normalizeProjectSections(siteContent, defaults) {
+    ['ko', 'en'].forEach(contentLang => {
+      const defaultProjects = defaults?.[contentLang]?.projects?.items || [];
+      const defaultByTitle = new Map(defaultProjects.map(project => [project.title, project]));
+      (siteContent[contentLang]?.projects?.items || []).forEach(project => {
+        const defaultProject = defaultByTitle.get(project.title);
+        if (!Array.isArray(project.tasks) || !project.tasks.length) {
+          project.tasks = Array.isArray(defaultProject?.tasks) ? defaultProject.tasks : [];
+        }
+        if (!Array.isArray(project.results) || !project.results.length) {
+          project.results = Array.isArray(project.bullets) && project.bullets.length
+            ? project.bullets
+            : Array.isArray(defaultProject?.results)
+              ? defaultProject.results
+              : [];
+        }
+      });
+    });
+    return siteContent;
   }
 
   function getContent() {
