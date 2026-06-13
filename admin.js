@@ -57,15 +57,34 @@
             ? project.bullets
             : Array.isArray(defaultProject?.results)
               ? defaultProject.results
-              : [];
+            : [];
         }
       });
+      sortProjectItems(siteContent[lang]?.projects);
     });
     return siteContent;
   }
 
+  function sortProjectItems(projects) {
+    if (!projects || !Array.isArray(projects.items)) return;
+    const categoryOrder = new Map((projects.categories || []).map((category, index) => [category, index]));
+    projects.items = projects.items
+      .map((item, index) => ({ item, index }))
+      .sort((a, b) => {
+        const aOrder = categoryOrder.has(a.item.category) ? categoryOrder.get(a.item.category) : Number.MAX_SAFE_INTEGER;
+        const bOrder = categoryOrder.has(b.item.category) ? categoryOrder.get(b.item.category) : Number.MAX_SAFE_INTEGER;
+        return aOrder - bOrder || a.index - b.index;
+      })
+      .map(entry => entry.item);
+  }
+
+  function sortProjects() {
+    ['ko', 'en'].forEach(lang => sortProjectItems(content[lang]?.projects));
+  }
+
   function save() {
     collect();
+    sortProjects();
     localStorage.setItem(storageKey, JSON.stringify(content));
     alert('저장했습니다. 홈페이지를 새로고침하면 반영됩니다.');
   }
@@ -267,6 +286,7 @@
 
   function renderProjects() {
     const lang = getLang();
+    sortProjectItems(content[lang].projects);
     form.innerHTML = `
       <div class="editor-grid">
         ${field('섹션 제목', `${lang}.projects.title`)}
@@ -372,7 +392,10 @@
     };
     if (activePanel === 'layout') content.settings.customPages.push(templates.layout);
     else if (activePanel === 'skills') content[lang].skills.groups.push(templates.skills);
-    else if (activePanel === 'projects') content[lang].projects.items.push(templates.projects);
+    else if (activePanel === 'projects') {
+      content[lang].projects.items.push(templates.projects);
+      sortProjectItems(content[lang].projects);
+    }
     else if (activePanel === 'experience') content[lang].experience.items.push(templates.experience);
     else if (activePanel === 'about') content[lang].about.cards.push(templates.about);
     renderActive();
