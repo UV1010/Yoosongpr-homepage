@@ -20,7 +20,7 @@
     hero: ['첫 화면', '이름, 직무, 소개 문구, 버튼 위치를 수정합니다.'],
     about: ['소개', '3단 카드의 제목, 아이콘, 태그, 설명을 수정합니다.'],
     experience: ['경력', '회사, 기간, 요약, 상세 업무를 수정합니다.'],
-    projects: ['프로젝트', '카테고리, 카드 문구, 태그, 성과를 수정합니다.'],
+    projects: ['프로젝트', '카테고리, 카드 문구, 주요 작업, 성과를 수정합니다.'],
     skills: ['기술스택', '첨부 이미지처럼 행 단위 기술스택을 수정합니다.'],
     layout: ['레이아웃 / 페이지', '섹션 순서와 추가 페이지를 관리합니다.'],
     json: ['JSON 백업', '전체 데이터를 내보내거나 복원합니다.']
@@ -35,12 +35,23 @@
       const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
       if (saved && (!saved.ko || !saved.en || !saved.settings)) {
         localStorage.removeItem(storageKey);
-        return clone(window.DEFAULT_SITE_CONTENT);
+        return normalizeContent(clone(window.DEFAULT_SITE_CONTENT));
       }
-      return saved || clone(window.DEFAULT_SITE_CONTENT);
+      return normalizeContent(saved || clone(window.DEFAULT_SITE_CONTENT));
     } catch {
-      return clone(window.DEFAULT_SITE_CONTENT);
+      return normalizeContent(clone(window.DEFAULT_SITE_CONTENT));
     }
+  }
+
+  function normalizeContent(siteContent) {
+    ['ko', 'en'].forEach(lang => {
+      (siteContent[lang]?.projects?.items || []).forEach(project => {
+        if (!Array.isArray(project.tasks)) project.tasks = [];
+        if (!Array.isArray(project.results)) project.results = Array.isArray(project.bullets) ? project.bullets : [];
+        if (!Array.isArray(project.bullets)) project.bullets = project.results;
+      });
+    });
+    return siteContent;
   }
 
   function save() {
@@ -245,9 +256,12 @@
           { label: '사진/영상 첨부', key: 'media', kind: 'file' },
           { label: '상세 미디어 URL', key: 'media', kind: 'array' },
           { label: '태그', key: 'chips', kind: 'array' },
-          { label: '성과 bullet', key: 'bullets', kind: 'array' }
+          { label: '주요 작업', key: 'tasks', kind: 'array' },
+          { label: '성과', key: 'results', kind: 'array' },
+          { label: '카드 노출 bullet', key: 'bullets', kind: 'array' }
         ])
       ).join('')}
+      <p class="editor-note">상세 창의 주요 작업과 성과는 각각 별도로 노출됩니다. 카드 노출 bullet은 프로젝트 카드 하단에만 사용됩니다.</p>
     `;
     addButton.hidden = false;
   }
@@ -326,7 +340,7 @@
     const templates = {
       about: { icon: '◈', tags: ['Tag'], title: '새 소개 카드', body: '설명을 입력하세요.', bullets: ['성과를 입력하세요.'] },
       experience: { company: '새 회사', role: '직무', period: '기간', logo: 'N', summary: '요약을 입력하세요.', highlights: ['핵심 업무'], blocks: [] },
-      projects: { category: content[lang].projects.categories[0] || 'PR', visual: 'visual-blue', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], bullets: ['성과'] },
+      projects: { category: content[lang].projects.categories[0] || 'PR', visual: 'visual-blue', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], tasks: ['주요 작업'], results: ['성과'], bullets: ['카드 노출 문구'] },
       skills: { icon: '⌁', title: '새 기술스택', chips: ['항목'] },
       layout: { id: `page-${Date.now()}`, title: '새 페이지', subtitle: '서브타이틀', body: '본문을 입력하세요.', enabled: true }
     };

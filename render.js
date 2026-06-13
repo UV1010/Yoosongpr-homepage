@@ -46,15 +46,21 @@
   }
 
   function list(items) {
-    return `<ul>${(items || []).map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+    const values = (items || []).filter(Boolean);
+    if (!values.length) return '';
+    return `<ul>${values.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
   }
 
   function chips(items) {
-    return `<div class="chips">${(items || []).map(item => `<span>${escapeHtml(item)}</span>`).join('')}</div>`;
+    const values = (items || []).filter(Boolean);
+    if (!values.length) return '';
+    return `<div class="chips">${values.map(item => `<span>${escapeHtml(item)}</span>`).join('')}</div>`;
   }
 
   function tags(items) {
-    return `<div class="card-tags">${(items || []).map(item => `<span>${escapeHtml(item)}</span>`).join('')}</div>`;
+    const values = (items || []).filter(Boolean);
+    if (!values.length) return '';
+    return `<div class="card-tags">${values.map(item => `<span>${escapeHtml(item)}</span>`).join('')}</div>`;
   }
 
   function getYouTubeId(url) {
@@ -157,7 +163,7 @@
           <p class="project-role">${escapeHtml(item.role)}</p>
           <p>${escapeHtml(item.body)}</p>
           ${chips(item.chips)}
-          ${list(item.bullets)}
+          ${list(item.bullets || item.results)}
         </div>
       </article>
     `;
@@ -316,7 +322,7 @@
       </header>
       ${renderProjectMedia(item)}
       ${modalSection(overviewTitle, `<p>${escapeHtml(item.body)}</p>`)}
-      ${modalSection(workTitle, list(item.tasks || item.bullets))}
+      ${modalSection(workTitle, list(item.tasks))}
       ${modalSection(stackTitle, chips(item.chips))}
       ${modalSection(resultTitle, list(item.results || item.bullets))}
     `;
