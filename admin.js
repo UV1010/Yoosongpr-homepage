@@ -276,7 +276,6 @@
       ${(content[lang].projects.items || []).map((_, index) =>
         projectEditor(_, `${lang}.projects.items.${index}`, [
           { label: '카테고리', key: 'category' },
-          { label: '배경 스타일', key: 'visual', kind: 'select', options: ['visual-blue', 'visual-purple', 'visual-mint', 'visual-slate', 'visual-light', 'visual-ai'] },
           { label: '기간', key: 'date' },
           { label: '제목', key: 'title' },
           { label: '역할', key: 'role' },
@@ -367,7 +366,7 @@
     const templates = {
       about: { icon: '◈', tags: ['Tag'], title: '새 소개 카드', body: '설명을 입력하세요.', bullets: ['성과를 입력하세요.'] },
       experience: { company: '새 회사', role: '직무', period: '기간', logo: 'N', summary: '요약을 입력하세요.', highlights: ['핵심 업무'], blocks: [] },
-      projects: { category: content[lang].projects.categories[0] || 'PR', visual: 'visual-blue', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], tasks: ['주요 업무'], results: ['성과'] },
+      projects: { category: content[lang].projects.categories[0] || 'PR', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], tasks: ['주요 업무'], results: ['성과'] },
       skills: { icon: '⌁', title: '새 기술스택', chips: ['항목'] },
       layout: { id: `page-${Date.now()}`, title: '새 페이지', subtitle: '서브타이틀', body: '본문을 입력하세요.', enabled: true }
     };
