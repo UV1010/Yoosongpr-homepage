@@ -160,10 +160,8 @@
         <div class="project-body">
           <button class="project-open" data-project-open="${index}" type="button" aria-label="${escapeHtml(item.title)} 상세 보기">↗</button>
           <h3>${escapeHtml(item.title)}</h3>
-          <p class="project-role">${escapeHtml(item.role)}</p>
           <p>${escapeHtml(item.body)}</p>
           ${chips(item.chips)}
-          ${list(item.bullets || item.results)}
         </div>
       </article>
     `;
@@ -310,7 +308,7 @@
   function renderProjectModalContent(item, data) {
     const meta = [item.role, item.date, item.category].filter(Boolean);
     const resultTitle = lang === 'en' ? 'Outcomes' : '성과';
-    const workTitle = lang === 'en' ? 'Key Work' : '주요 작업';
+    const workTitle = lang === 'en' ? 'Key Responsibilities' : '주요 업무';
     const overviewTitle = lang === 'en' ? 'Overview' : '개요';
     const stackTitle = lang === 'en' ? 'Stack / Scope' : '기술 스택 / 범위';
     return `
@@ -322,8 +320,8 @@
       </header>
       ${renderProjectMedia(item)}
       ${modalSection(overviewTitle, `<p>${escapeHtml(item.body)}</p>`)}
-      ${modalSection(workTitle, list(item.tasks))}
       ${modalSection(stackTitle, chips(item.chips))}
+      ${modalSection(workTitle, list(item.tasks))}
       ${modalSection(resultTitle, list(item.results || item.bullets))}
     `;
   }
