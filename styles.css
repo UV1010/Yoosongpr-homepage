@@ -1454,6 +1454,80 @@ footer {
   background: rgba(255, 255, 255, 0.025);
 }
 
+.project-editor-card {
+  display: block;
+}
+
+.project-editor-summary {
+  display: grid;
+  grid-template-columns: minmax(96px, auto) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  min-height: 54px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.project-editor-summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-editor-summary strong {
+  overflow: hidden;
+  color: var(--text);
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-editor-category,
+.project-editor-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--blue);
+  background: rgba(112, 183, 255, 0.08);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.project-editor-category {
+  padding: 0 12px;
+}
+
+.project-editor-toggle {
+  min-width: 68px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.project-editor-card[open] .project-editor-toggle {
+  color: var(--blue);
+}
+
+.project-editor-card[open] .project-editor-toggle::before {
+  content: "접기";
+}
+
+.project-editor-card[open] .project-editor-toggle {
+  font-size: 0;
+}
+
+.project-editor-card[open] .project-editor-toggle::before {
+  font-size: 12px;
+}
+
+.project-editor-fields {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
 @media (max-width: 980px) {
   .site-header {
     grid-template-columns: 1fr auto;

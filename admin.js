@@ -182,15 +182,33 @@
   function cardEditor(item, path, fields) {
     return `
       <article class="editor-card">
-        ${fields.map(config => {
-          if (config.kind === 'textarea') return field(config.label, `${path}.${config.key}`, 'textarea');
-          if (config.kind === 'array') return arrayField(config.label, `${path}.${config.key}`);
-          if (config.kind === 'select') return selectField(config.label, `${path}.${config.key}`, config.options);
-          if (config.kind === 'file') return fileField(config.label, `${path}.${config.key}`);
-          return field(config.label, `${path}.${config.key}`);
-        }).join('')}
+        ${fields.map(config => editorField(path, config)).join('')}
         <button class="button small-button danger-button" data-remove="${path}" type="button">삭제</button>
       </article>
+    `;
+  }
+
+  function editorField(path, config) {
+    if (config.kind === 'textarea') return field(config.label, `${path}.${config.key}`, 'textarea');
+    if (config.kind === 'array') return arrayField(config.label, `${path}.${config.key}`);
+    if (config.kind === 'select') return selectField(config.label, `${path}.${config.key}`, config.options);
+    if (config.kind === 'file') return fileField(config.label, `${path}.${config.key}`);
+    return field(config.label, `${path}.${config.key}`);
+  }
+
+  function projectEditor(item, path, fields) {
+    return `
+      <details class="editor-card project-editor-card">
+        <summary class="project-editor-summary">
+          <span class="project-editor-category">${escapeHtml(item.category || '카테고리 없음')}</span>
+          <strong>${escapeHtml(item.title || '제목 없음')}</strong>
+          <span class="project-editor-toggle">펼치기</span>
+        </summary>
+        <div class="project-editor-fields">
+          ${fields.map(config => editorField(path, config)).join('')}
+          <button class="button small-button danger-button" data-remove="${path}" type="button">삭제</button>
+        </div>
+      </details>
     `;
   }
 
@@ -257,7 +275,7 @@
         ${arrayField('카테고리', `${lang}.projects.categories`)}
       </div>
       ${(content[lang].projects.items || []).map((_, index) =>
-        cardEditor(_, `${lang}.projects.items.${index}`, [
+        projectEditor(_, `${lang}.projects.items.${index}`, [
           { label: '카테고리', key: 'category' },
           { label: '배경 스타일', key: 'visual', kind: 'select', options: ['visual-blue', 'visual-purple', 'visual-mint', 'visual-slate', 'visual-light', 'visual-ai'] },
           { label: '기간', key: 'date' },
