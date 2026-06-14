@@ -175,33 +175,40 @@
         <div class="section-title"><h2>${escapeHtml(data.experience.title)}</h2><p class="pill">${escapeHtml(data.experience.subtitle)}</p></div>
         <div class="experience-stack">
           ${(data.experience.items || [])
-            .map(item => `
+            .map(item => {
+              const blocks = item.blocks?.length ? item.blocks : [{ title: item.role, body: item.summary, bullets: item.highlights }];
+              return `
               <article class="glass-card experience-card">
-                <div class="experience-left">
-                  ${companyLogo(item)}
-                  <div>
-                    <h3>${escapeHtml(item.company)}</h3>
-                    <p>${escapeHtml(item.role)}</p>
+                <header class="experience-company-head">
+                  <div class="experience-company-main">
+                    ${companyLogo(item)}
+                    <div>
+                      <h3>${escapeHtml(item.company)}</h3>
+                      <p>${escapeHtml(item.role)}</p>
+                    </div>
                   </div>
-                  <span class="date-pill">${escapeHtml(item.period)}</span>
-                </div>
-                <div class="experience-right">
-                  <p class="experience-summary">${escapeHtml(item.summary)}</p>
-                  ${chips(item.highlights)}
-                  <div class="role-grid">
-                    ${(item.blocks || [])
+                  <div class="experience-company-meta">
+                    <span class="experience-period">${escapeHtml(item.period)}</span>
+                    <span class="experience-tenure">${escapeHtml(item.tenure || '')}</span>
+                  </div>
+                </header>
+                <div class="experience-timeline">
+                  ${blocks
                       .map(block => `
-                        <div class="role-block">
+                        <section class="experience-timeline-item">
                           <h4>${escapeHtml(block.title)}</h4>
-                          <p>${escapeHtml(block.body)}</p>
+                          ${block.period ? `<p class="experience-block-period">${escapeHtml(block.period)}</p>` : ''}
+                          ${block.meta ? `<p class="experience-block-meta">${escapeHtml(block.meta)}</p>` : ''}
+                          ${block.body ? `<p class="experience-block-body">${escapeHtml(block.body)}</p>` : ''}
                           ${list(block.bullets)}
-                        </div>
+                          <span class="experience-detail-button">${escapeHtml(lang === 'en' ? 'View details' : '상세 내용 보기')}</span>
+                        </section>
                       `)
                       .join('')}
-                  </div>
                 </div>
               </article>
-            `)
+            `;
+            })
             .join('')}
         </div>
       </section>
