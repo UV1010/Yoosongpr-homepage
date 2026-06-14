@@ -206,7 +206,8 @@ window.DEFAULT_SITE_CONTENT = {
       title: '함께 이야기해요',
       subtitle: 'Contact',
       body: '홍보, 브랜드 마케팅, 디자인 관련 협업과 채용 문의를 편하게 보내주세요.',
-      email: 'hello@example.com'
+      email: 'hello@example.com',
+      phone: '+82 10-2828-7087'
     },
     footer: '© 2026 유성열. All rights reserved.'
   },
@@ -288,7 +289,8 @@ window.DEFAULT_SITE_CONTENT = {
       title: 'Let’s Talk',
       subtitle: 'Contact',
       body: 'For PR, brand marketing, design, communication, or hiring inquiries, feel free to reach out.',
-      email: 'hello@example.com'
+      email: 'hello@example.com',
+      phone: '+82 10-2828-7087'
     },
     footer: '© 2026 Sungyeol Yoo. All rights reserved.'
   }

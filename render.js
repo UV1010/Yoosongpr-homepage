@@ -439,12 +439,16 @@
   }
 
   function renderContact(data) {
+    const phoneHref = String(data.contact.phone || '').replace(/[^\d+]/g, '');
     return `
       <section id="contact" class="section contact-section">
         <div class="section-title"><h2>${escapeHtml(data.contact.title)}</h2><p>${escapeHtml(data.contact.subtitle)}</p></div>
         <article class="glass-card contact-card">
           <p>${escapeHtml(data.contact.body)}</p>
-          <a class="mail-link" href="mailto:${escapeHtml(data.contact.email)}">${escapeHtml(data.contact.email)}</a>
+          <div class="contact-links">
+            <a class="mail-link" href="mailto:${escapeHtml(data.contact.email)}">${escapeHtml(data.contact.email)}</a>
+            ${data.contact.phone ? `<a class="phone-link" href="tel:${escapeHtml(phoneHref)}">${escapeHtml(data.contact.phone)}</a>` : ''}
+          </div>
         </article>
       </section>
     `;
