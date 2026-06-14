@@ -119,6 +119,50 @@
     alert('저장했습니다. 홈페이지를 새로고침하면 반영됩니다.');
   }
 
+  function buildContentSource(siteContent) {
+    const publishedKey = `yoo-portfolio-content-published-${Date.now()}`;
+    return [
+      `window.PORTFOLIO_STORAGE_KEY = '${publishedKey}';`,
+      `window.PORTFOLIO_ADMIN_SESSION_KEY = '${window.PORTFOLIO_ADMIN_SESSION_KEY}';`,
+      `window.PORTFOLIO_ADMIN_PASSWORD = '${window.PORTFOLIO_ADMIN_PASSWORD}';`,
+      '',
+      `window.DEFAULT_SITE_CONTENT = ${JSON.stringify(siteContent, null, 2)};`,
+      ''
+    ].join('\n');
+  }
+
+  function downloadContentFile(source) {
+    const blob = new Blob([source], { type: 'application/javascript;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'content.js';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  async function publishContent() {
+    collect();
+    sortProjects();
+    const source = buildContentSource(content);
+    localStorage.setItem(storageKey, JSON.stringify(content));
+    try {
+      const response = await fetch('/api/save-content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ source })
+      });
+      if (!response.ok) throw new Error('save failed');
+      localStorage.removeItem(storageKey);
+      alert('content.js 파일에 저장했습니다. 이제 GitHub에 올리면 모든 기기에서 같은 내용이 보입니다.');
+    } catch {
+      downloadContentFile(source);
+      alert('현재 환경에서는 파일을 직접 저장할 수 없어 content.js를 다운로드했습니다. 이 파일로 기존 content.js를 교체한 뒤 GitHub에 올려주세요.');
+    }
+  }
+
   function escapeHtml(value) {
     return String(value ?? '')
       .replaceAll('&', '&amp;')
@@ -442,6 +486,7 @@
       <textarea id="json-area" rows="22" spellcheck="false">${escapeHtml(JSON.stringify(content, null, 2))}</textarea>
       <div class="admin-actions">
         <button class="button" id="import-json" type="button">JSON 적용</button>
+        <button class="button" id="download-content" type="button">content.js 다운로드</button>
         <button class="button" id="reset-button" type="button">기본값 초기화</button>
       </div>
     `;
@@ -452,6 +497,15 @@
         localStorage.setItem(storageKey, JSON.stringify(content));
         renderActive();
         alert('JSON을 적용했습니다.');
+      } catch {
+        alert('JSON 형식을 확인해주세요.');
+      }
+    });
+    document.getElementById('download-content').addEventListener('click', () => {
+      try {
+        content = JSON.parse(document.getElementById('json-area').value);
+        sortProjects();
+        downloadContentFile(buildContentSource(content));
       } catch {
         alert('JSON 형식을 확인해주세요.');
       }
@@ -497,6 +551,7 @@
   }
 
   document.getElementById('save-button').addEventListener('click', save);
+  document.getElementById('publish-button').addEventListener('click', publishContent);
   document.getElementById('logout-button').addEventListener('click', () => {
     sessionStorage.removeItem(sessionKey);
     window.location.href = './admin.html';

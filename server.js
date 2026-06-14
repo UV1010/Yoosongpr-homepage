@@ -93,6 +93,25 @@ async function handleUpload(req, res) {
   }
 }
 
+async function handleSaveContent(req, res) {
+  try {
+    const payload = JSON.parse(await readBody(req));
+    const source = String(payload.source || '');
+    if (
+      !source.includes('window.PORTFOLIO_STORAGE_KEY') ||
+      !source.includes('window.DEFAULT_SITE_CONTENT') ||
+      source.length < 100
+    ) {
+      send(res, 400, JSON.stringify({ error: 'Invalid content source' }), 'application/json; charset=utf-8');
+      return;
+    }
+    fs.writeFileSync(path.join(root, 'content.js'), source, 'utf8');
+    send(res, 200, JSON.stringify({ ok: true }), 'application/json; charset=utf-8');
+  } catch (error) {
+    send(res, 500, JSON.stringify({ error: error.message }), 'application/json; charset=utf-8');
+  }
+}
+
 function serveStatic(req, res) {
   const requestUrl = new URL(req.url, `http://${req.headers.host}`);
   let pathname = decodeURIComponent(requestUrl.pathname);
@@ -120,6 +139,10 @@ const server = http.createServer((req, res) => {
   }
   if (req.method === 'POST' && req.url === '/api/upload-media') {
     handleUpload(req, res);
+    return;
+  }
+  if (req.method === 'POST' && req.url === '/api/save-content') {
+    handleSaveContent(req, res);
     return;
   }
   if (req.method === 'GET' || req.method === 'HEAD') {
