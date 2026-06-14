@@ -381,7 +381,7 @@
   function renderProjectMedia(item) {
     let media = (item.media || []).map(url => String(url || '').trim()).filter(Boolean);
     if (!media.length && /세방그룹 PR 광고 캠페인|Sebang Group PR Campaign/.test(item.title || '')) {
-      media = ['./assets/project-media/pr1.png', './assets/project-media/pr2.png'];
+      media = ['./assets/project-media/pr1.jpg', './assets/project-media/pr2.jpg'];
     }
     if (!media.length) {
       return `
