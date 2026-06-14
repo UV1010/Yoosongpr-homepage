@@ -505,6 +505,11 @@ body[data-theme="light"] .chips span {
   margin-top: 8px;
 }
 
+.about-body-list {
+  margin-top: 18px;
+  line-height: 1.75;
+}
+
 .impact-panel {
   margin-top: 36px;
   padding: 30px;

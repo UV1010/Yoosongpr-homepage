@@ -90,6 +90,16 @@
     return `<ul>${values.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
   }
 
+  function multilineList(value, className = '') {
+    const values = String(value || '')
+      .split(/\r?\n/)
+      .map(item => item.trim())
+      .filter(Boolean);
+    if (!values.length) return '';
+    const classAttr = className ? ` class="${escapeHtml(className)}"` : '';
+    return `<ul${classAttr}>${values.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+  }
+
   function chips(items) {
     const values = (items || []).filter(Boolean);
     if (!values.length) return '';
@@ -168,7 +178,7 @@
               <article class="glass-card about-card">
                 <div class="card-title-row"><span class="card-icon">${escapeHtml(card.icon || '◈')}</span><h3>${escapeHtml(card.title)}</h3></div>
                 ${tags(card.tags)}
-                <p>${escapeHtml(card.body)}</p>
+                ${multilineList(card.body, 'about-body-list')}
               </article>
             `)
             .join('')}
