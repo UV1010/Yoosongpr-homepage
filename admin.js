@@ -311,8 +311,7 @@
           { label: '픽토그램', key: 'icon' },
           { label: '제목', key: 'title' },
           { label: '태그', key: 'tags', kind: 'array' },
-          { label: '본문', key: 'body', kind: 'textarea' },
-          { label: '성과 bullet', key: 'bullets', kind: 'array' }
+          { label: '본문', key: 'body', kind: 'textarea' }
         ])
       ).join('')}
     `;
@@ -331,7 +330,8 @@
           { label: '직급/부서', key: 'role' },
           { label: '기간', key: 'period' },
           { label: '재직 기간 배지', key: 'tenure' },
-          { label: '요약', key: 'summary', kind: 'textarea' }
+          { label: '요약', key: 'summary', kind: 'textarea' },
+          { label: '하이라이트', key: 'highlights', kind: 'array' }
         ])
       ).join('')}
     `;
@@ -440,8 +440,8 @@
     collect();
     const lang = getLang();
     const templates = {
-      about: { icon: '◈', tags: ['Tag'], title: '새 소개 카드', body: '설명을 입력하세요.', bullets: ['성과를 입력하세요.'] },
-      experience: { company: '새 회사', role: '직무', period: '기간', tenure: '', logo: 'N', logoDark: '', logoLight: '', summary: '요약을 입력하세요.', blocks: [{ title: '새 업무', period: '기간', meta: '', body: '업무 설명을 입력하세요.', bullets: ['주요 업무'] }] },
+      about: { icon: '◈', tags: ['Tag'], title: '새 소개 카드', body: '설명을 입력하세요.' },
+      experience: { company: '새 회사', role: '직무', period: '기간', tenure: '', logo: 'N', logoDark: '', logoLight: '', summary: '요약을 입력하세요.', highlights: ['핵심 업무'], blocks: [{ title: '새 업무', period: '기간', meta: '', body: '업무 설명을 입력하세요.', bullets: ['주요 업무'] }] },
       projects: { category: content[lang].projects.categories[0] || 'PR', company: content[lang].experience.items?.[0]?.company || '', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], tasks: ['주요 업무'], results: ['성과'] },
       skills: { icon: '⌁', title: '새 기술스택', chips: ['항목'] },
       layout: { id: `page-${Date.now()}`, title: '새 페이지', subtitle: '서브타이틀', body: '본문을 입력하세요.', enabled: true }

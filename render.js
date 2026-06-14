@@ -169,7 +169,6 @@
                 <div class="card-title-row"><span class="card-icon">${escapeHtml(card.icon || '◈')}</span><h3>${escapeHtml(card.title)}</h3></div>
                 ${tags(card.tags)}
                 <p>${escapeHtml(card.body)}</p>
-                ${list(card.bullets)}
               </article>
             `)
             .join('')}
@@ -185,7 +184,7 @@
         <div class="experience-stack">
           ${(data.experience.items || [])
             .map(item => {
-              const blocks = item.blocks?.length ? item.blocks : [{ title: item.role, body: item.summary, bullets: [] }];
+              const blocks = item.blocks?.length ? item.blocks : [{ title: item.role, body: item.summary, bullets: item.highlights }];
               return `
               <article class="glass-card experience-card">
                 <header class="experience-company-head">
