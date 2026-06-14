@@ -367,6 +367,10 @@ h1 {
   width: min(1120px, calc(100% - 40px));
 }
 
+#about {
+  width: min(1120px, calc(100% - 40px));
+}
+
 .section-title {
   display: grid;
   justify-items: center;

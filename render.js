@@ -185,7 +185,7 @@
         <div class="experience-stack">
           ${(data.experience.items || [])
             .map(item => {
-              const blocks = item.blocks?.length ? item.blocks : [{ title: item.role, body: item.summary, bullets: item.highlights }];
+              const blocks = item.blocks?.length ? item.blocks : [{ title: item.role, body: item.summary, bullets: [] }];
               return `
               <article class="glass-card experience-card">
                 <header class="experience-company-head">
