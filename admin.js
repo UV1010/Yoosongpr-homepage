@@ -45,6 +45,13 @@
 
   function normalizeContent(siteContent) {
     ['ko', 'en'].forEach(lang => {
+      const defaultExperiences = window.DEFAULT_SITE_CONTENT?.[lang]?.experience?.items || [];
+      const defaultExperienceByCompany = new Map(defaultExperiences.map(item => [item.company, item]));
+      (siteContent[lang]?.experience?.items || []).forEach(item => {
+        const defaultItem = defaultExperienceByCompany.get(item.company);
+        if (!item.logoDark) item.logoDark = defaultItem?.logoDark || '';
+        if (!item.logoLight) item.logoLight = defaultItem?.logoLight || '';
+      });
       const defaultProjects = window.DEFAULT_SITE_CONTENT?.[lang]?.projects?.items || [];
       const defaultByTitle = new Map(defaultProjects.map(project => [project.title, project]));
       const fallbackCompany = siteContent[lang]?.experience?.items?.[0]?.company || '';
@@ -305,7 +312,7 @@
       ${(content[lang].projects.items || []).map((_, index) =>
         projectEditor(_, `${lang}.projects.items.${index}`, [
           { label: '카테고리', key: 'category' },
-          { label: '회사 선택', key: 'company', kind: 'select', options: companyOptions },
+          { label: '경력 회사명 선택', key: 'company', kind: 'select', options: companyOptions },
           { label: '기간', key: 'date' },
           { label: '제목', key: 'title' },
           { label: '역할', key: 'role' },

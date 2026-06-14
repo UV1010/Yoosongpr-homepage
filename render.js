@@ -34,6 +34,13 @@
 
   function normalizeProjectSections(siteContent, defaults) {
     ['ko', 'en'].forEach(contentLang => {
+      const defaultExperiences = defaults?.[contentLang]?.experience?.items || [];
+      const defaultExperienceByCompany = new Map(defaultExperiences.map(item => [item.company, item]));
+      (siteContent[contentLang]?.experience?.items || []).forEach(item => {
+        const defaultItem = defaultExperienceByCompany.get(item.company);
+        if (!item.logoDark) item.logoDark = defaultItem?.logoDark || '';
+        if (!item.logoLight) item.logoLight = defaultItem?.logoLight || '';
+      });
       const defaultProjects = defaults?.[contentLang]?.projects?.items || [];
       const defaultByTitle = new Map(defaultProjects.map(project => [project.title, project]));
       const fallbackCompany = siteContent[contentLang]?.experience?.items?.[0]?.company || '';

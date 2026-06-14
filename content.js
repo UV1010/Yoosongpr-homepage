@@ -165,8 +165,8 @@ window.DEFAULT_SITE_CONTENT = {
           role: '그룹 브랜드실 / 선임',
           period: '2024.05 - 재직 중',
           logo: 'SB',
-          logoDark: '',
-          logoLight: '',
+          logoDark: './assets/project-media/새방_다크.png',
+          logoLight: './assets/project-media/세방_화이트.png',
           summary: '물류, 운송, 항만, 배터리 제조업 기반 그룹의 PR, 브랜드 기획, 광고, 홈페이지, AI 업무 개선을 담당합니다.',
           highlights: ['그룹 PR 광고 캠페인', '브랜드 프로모션', '홈페이지 구축', 'AI 업무 자동화'],
           blocks: [
@@ -179,8 +179,8 @@ window.DEFAULT_SITE_CONTENT = {
           role: '홍보팀 / 대리',
           period: '2017.02 - 2024.05',
           logo: 'IY',
-          logoDark: '',
-          logoLight: '',
+          logoDark: './assets/project-media/일양_다크.png',
+          logoLight: './assets/project-media/일양_화이트.png',
           summary: '제약·건강기능식품 기업의 홍보, 브랜드 디자인, 언론홍보, 사내 홍보를 담당했습니다.',
           highlights: ['광고 심의', '제품 디자인', '언론홍보', '사보 기획'],
           blocks: [
@@ -255,8 +255,8 @@ window.DEFAULT_SITE_CONTENT = {
       title: 'Experience',
       subtitle: '9+ years in PR and brand marketing',
       items: [
-        { company: 'Sebang Group · Sebang Co., Ltd.', role: 'Senior Manager / Group Brand Office', period: 'May 2024 - Present', logo: 'SB', logoDark: '', logoLight: '', summary: 'Responsible for group PR, brand planning, advertising, website operations, and AI process improvement across logistics, transport, ports, and battery businesses.', highlights: ['Group PR campaigns', 'Brand promotion', 'Website renewal', 'AI automation'], blocks: [{ title: 'Group PR & Advertising', body: 'Managed agency selection, competitive pitching, budget/timeline control, taxi OOH, YouTube, and TVC advertising.', bullets: ['Approx. 200 taxis in Seoul for 3 months', 'About 7.25M YouTube views', 'TVC GRP 852 achieved'] }] },
-        { company: 'Ilyang Pharmaceutical Co., Ltd.', role: 'Assistant Manager / PR Team', period: 'Feb 2017 - May 2024', logo: 'IY', logoDark: '', logoLight: '', summary: 'Handled PR, brand design, media relations, and internal communications for pharmaceutical and health supplement products.', highlights: ['Ad review', 'Product design', 'Media relations', 'Internal magazine'], blocks: [{ title: 'PR & Ad Review', body: 'Reviewed regulatory compliance for OTC, health supplement promotional materials, landing pages, and sales materials.', bullets: ['OTC and supplement ad review', 'Radio ad production management', 'OOH signage permit management'] }] }
+        { company: 'Sebang Group · Sebang Co., Ltd.', role: 'Senior Manager / Group Brand Office', period: 'May 2024 - Present', logo: 'SB', logoDark: './assets/project-media/새방_다크.png', logoLight: './assets/project-media/세방_화이트.png', summary: 'Responsible for group PR, brand planning, advertising, website operations, and AI process improvement across logistics, transport, ports, and battery businesses.', highlights: ['Group PR campaigns', 'Brand promotion', 'Website renewal', 'AI automation'], blocks: [{ title: 'Group PR & Advertising', body: 'Managed agency selection, competitive pitching, budget/timeline control, taxi OOH, YouTube, and TVC advertising.', bullets: ['Approx. 200 taxis in Seoul for 3 months', 'About 7.25M YouTube views', 'TVC GRP 852 achieved'] }] },
+        { company: 'Ilyang Pharmaceutical Co., Ltd.', role: 'Assistant Manager / PR Team', period: 'Feb 2017 - May 2024', logo: 'IY', logoDark: './assets/project-media/일양_다크.png', logoLight: './assets/project-media/일양_화이트.png', summary: 'Handled PR, brand design, media relations, and internal communications for pharmaceutical and health supplement products.', highlights: ['Ad review', 'Product design', 'Media relations', 'Internal magazine'], blocks: [{ title: 'PR & Ad Review', body: 'Reviewed regulatory compliance for OTC, health supplement promotional materials, landing pages, and sales materials.', bullets: ['OTC and supplement ad review', 'Radio ad production management', 'OOH signage permit management'] }] }
       ]
     },
     projects: {
