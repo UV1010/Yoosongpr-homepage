@@ -70,6 +70,9 @@
       (siteContent[lang]?.projects?.items || []).forEach(project => {
         const defaultProject = defaultByTitle.get(project.title);
         if (!project.company) project.company = defaultProject?.company || fallbackCompany;
+        if (!Array.isArray(project.media) || !project.media.length) {
+          project.media = Array.isArray(defaultProject?.media) ? defaultProject.media : [];
+        }
         if (!Array.isArray(project.tasks) || !project.tasks.length) {
           project.tasks = Array.isArray(defaultProject?.tasks) ? defaultProject.tasks : [];
         }
