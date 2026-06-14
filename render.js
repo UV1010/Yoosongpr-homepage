@@ -219,7 +219,6 @@
                           ${block.meta ? `<p class="experience-block-meta">${escapeHtml(block.meta)}</p>` : ''}
                           <button type="button" class="experience-detail-button" aria-expanded="false">${escapeHtml(lang === 'en' ? 'View details' : '상세 내용 보기')}</button>
                           <div class="experience-detail-panel" hidden>
-                            ${block.body ? `<p class="experience-block-body">${escapeHtml(block.body)}</p>` : ''}
                             ${list(block.bullets)}
                           </div>
                         </section>
