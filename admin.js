@@ -53,6 +53,7 @@
   }
 
   function normalizeContent(siteContent) {
+    const hasUsableMedia = media => Array.isArray(media) && media.some(item => String(item || '').trim());
     ['ko', 'en'].forEach(lang => {
       const defaultExperiences = window.DEFAULT_SITE_CONTENT?.[lang]?.experience?.items || [];
       const defaultExperienceByCompany = new Map(defaultExperiences.map(item => [item.company, item]));
@@ -70,7 +71,7 @@
       (siteContent[lang]?.projects?.items || []).forEach(project => {
         const defaultProject = defaultByTitle.get(project.title);
         if (!project.company) project.company = defaultProject?.company || fallbackCompany;
-        if (!Array.isArray(project.media) || !project.media.length) {
+        if (!hasUsableMedia(project.media)) {
           project.media = Array.isArray(defaultProject?.media) ? defaultProject.media : [];
         }
         if (!Array.isArray(project.tasks) || !project.tasks.length) {

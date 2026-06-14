@@ -33,6 +33,7 @@
   }
 
   function normalizeProjectSections(siteContent, defaults) {
+    const hasUsableMedia = media => Array.isArray(media) && media.some(item => String(item || '').trim());
     ['ko', 'en'].forEach(contentLang => {
       const defaultExperiences = defaults?.[contentLang]?.experience?.items || [];
       const defaultExperienceByCompany = new Map(defaultExperiences.map(item => [item.company, item]));
@@ -50,7 +51,7 @@
       (siteContent[contentLang]?.projects?.items || []).forEach(project => {
         const defaultProject = defaultByTitle.get(project.title);
         if (!project.company) project.company = defaultProject?.company || fallbackCompany;
-        if (!Array.isArray(project.media) || !project.media.length) {
+        if (!hasUsableMedia(project.media)) {
           project.media = Array.isArray(defaultProject?.media) ? defaultProject.media : [];
         }
         if (!Array.isArray(project.tasks) || !project.tasks.length) {
@@ -378,7 +379,10 @@
   }
 
   function renderProjectMedia(item) {
-    const media = (item.media || []).filter(Boolean);
+    let media = (item.media || []).map(url => String(url || '').trim()).filter(Boolean);
+    if (!media.length && /세방그룹 PR 광고 캠페인|Sebang Group PR Campaign/.test(item.title || '')) {
+      media = ['./assets/project-media/pr1.png', './assets/project-media/pr2.png'];
+    }
     if (!media.length) {
       return `
         <div class="project-media-empty">
