@@ -38,8 +38,8 @@
       const defaultExperienceByCompany = new Map(defaultExperiences.map(item => [item.company, item]));
       (siteContent[contentLang]?.experience?.items || []).forEach(item => {
         const defaultItem = defaultExperienceByCompany.get(item.company);
-        if (!item.logoDark) item.logoDark = defaultItem?.logoDark || '';
-        if (!item.logoLight) item.logoLight = defaultItem?.logoLight || '';
+        item.logoDark = stableLogoUrl(item.logoDark || defaultItem?.logoDark || '');
+        item.logoLight = stableLogoUrl(item.logoLight || defaultItem?.logoLight || '');
       });
       const defaultProjects = defaults?.[contentLang]?.projects?.items || [];
       const defaultByTitle = new Map(defaultProjects.map(project => [project.title, project]));
@@ -65,6 +65,14 @@
   function getContent() {
     const all = getAllContent();
     return { settings: all.settings, ...all[lang] };
+  }
+
+  function stableLogoUrl(url) {
+    return String(url || '')
+      .replace('새방_다크.png', 'sebang-dark.png')
+      .replace('세방_화이트.png', 'sebang-light.png')
+      .replace('일양_다크.png', 'ilyang-dark.png')
+      .replace('일양_화이트.png', 'ilyang-light.png');
   }
 
   function escapeHtml(value) {
@@ -104,8 +112,9 @@
     }
     return `
       <span class="company-logo company-logo-media ${className}" aria-label="${escapeHtml(company.company || fallback)} 로고">
-        ${darkLogo ? `<img class="theme-logo theme-logo-dark" src="${escapeHtml(darkLogo)}" alt="" loading="lazy" />` : ''}
-        ${lightLogo ? `<img class="theme-logo theme-logo-light" src="${escapeHtml(lightLogo)}" alt="" loading="lazy" />` : ''}
+        ${darkLogo ? `<img class="theme-logo theme-logo-dark" src="${escapeHtml(darkLogo)}" alt="" loading="lazy" onerror="this.hidden=true; this.closest('.company-logo').classList.add('logo-load-error');" />` : ''}
+        ${lightLogo ? `<img class="theme-logo theme-logo-light" src="${escapeHtml(lightLogo)}" alt="" loading="lazy" onerror="this.hidden=true; this.closest('.company-logo').classList.add('logo-load-error');" />` : ''}
+        <span class="logo-fallback">${escapeHtml(fallback)}</span>
       </span>
     `;
   }

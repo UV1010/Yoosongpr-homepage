@@ -43,14 +43,22 @@
     }
   }
 
+  function stableLogoUrl(url) {
+    return String(url || '')
+      .replace('새방_다크.png', 'sebang-dark.png')
+      .replace('세방_화이트.png', 'sebang-light.png')
+      .replace('일양_다크.png', 'ilyang-dark.png')
+      .replace('일양_화이트.png', 'ilyang-light.png');
+  }
+
   function normalizeContent(siteContent) {
     ['ko', 'en'].forEach(lang => {
       const defaultExperiences = window.DEFAULT_SITE_CONTENT?.[lang]?.experience?.items || [];
       const defaultExperienceByCompany = new Map(defaultExperiences.map(item => [item.company, item]));
       (siteContent[lang]?.experience?.items || []).forEach(item => {
         const defaultItem = defaultExperienceByCompany.get(item.company);
-        if (!item.logoDark) item.logoDark = defaultItem?.logoDark || '';
-        if (!item.logoLight) item.logoLight = defaultItem?.logoLight || '';
+        item.logoDark = stableLogoUrl(item.logoDark || defaultItem?.logoDark || '');
+        item.logoLight = stableLogoUrl(item.logoLight || defaultItem?.logoLight || '');
       });
       const defaultProjects = window.DEFAULT_SITE_CONTENT?.[lang]?.projects?.items || [];
       const defaultByTitle = new Map(defaultProjects.map(project => [project.title, project]));
@@ -244,6 +252,38 @@
     `;
   }
 
+  function experienceEditor(item, path, fields) {
+    const blocks = Array.isArray(item.blocks) ? item.blocks : [];
+    return `
+      <details class="editor-card project-editor-card">
+        <summary class="project-editor-summary">
+          <span class="project-editor-category">경력</span>
+          <strong>${escapeHtml(item.company || '회사명 없음')}</strong>
+          <span class="project-editor-toggle">펼치기</span>
+        </summary>
+        <div class="project-editor-fields">
+          ${fields.map(config => editorField(path, config)).join('')}
+          <div class="experience-admin-blocks">
+            <h4>상세 업무 타임라인</h4>
+            ${blocks.map((block, index) => `
+              <article class="experience-admin-block">
+                <strong>${escapeHtml(block.title || `업무 ${index + 1}`)}</strong>
+                ${field('업무 제목', `${path}.blocks.${index}.title`)}
+                ${field('기간', `${path}.blocks.${index}.period`)}
+                ${field('인원/메타 정보', `${path}.blocks.${index}.meta`)}
+                ${field('설명', `${path}.blocks.${index}.body`, 'textarea')}
+                ${arrayField('업무 bullet', `${path}.blocks.${index}.bullets`)}
+                <button class="button small-button danger-button" data-remove="${path}.blocks.${index}" type="button">업무 삭제</button>
+              </article>
+            `).join('')}
+            <button class="button small-button" data-add-block="${path}.blocks" type="button">업무 추가</button>
+          </div>
+          <button class="button small-button danger-button" data-remove="${path}" type="button">경력 삭제</button>
+        </div>
+      </details>
+    `;
+  }
+
   function renderHero() {
     const lang = getLang();
     form.innerHTML = `
@@ -284,17 +324,17 @@
     form.innerHTML = `
       <div class="editor-grid">${field('섹션 제목', `${lang}.experience.title`)}${field('서브타이틀', `${lang}.experience.subtitle`)}</div>
       ${(content[lang].experience.items || []).map((_, index) =>
-        cardEditor(_, `${lang}.experience.items.${index}`, [
+        experienceEditor(_, `${lang}.experience.items.${index}`, [
           { label: '다크모드 회사 로고 URL', key: 'logoDark' },
           { label: '화이트모드 회사 로고 URL', key: 'logoLight' },
           { label: '회사명', key: 'company' },
           { label: '직급/부서', key: 'role' },
           { label: '기간', key: 'period' },
+          { label: '재직 기간 배지', key: 'tenure' },
           { label: '요약', key: 'summary', kind: 'textarea' },
           { label: '하이라이트', key: 'highlights', kind: 'array' }
         ])
       ).join('')}
-      <p class="editor-note">상세 업무 블록은 JSON 백업 탭에서 blocks 배열로 세부 편집할 수 있습니다.</p>
     `;
     addButton.hidden = false;
   }
@@ -402,7 +442,7 @@
     const lang = getLang();
     const templates = {
       about: { icon: '◈', tags: ['Tag'], title: '새 소개 카드', body: '설명을 입력하세요.', bullets: ['성과를 입력하세요.'] },
-      experience: { company: '새 회사', role: '직무', period: '기간', logo: 'N', logoDark: '', logoLight: '', summary: '요약을 입력하세요.', highlights: ['핵심 업무'], blocks: [] },
+      experience: { company: '새 회사', role: '직무', period: '기간', tenure: '', logo: 'N', logoDark: '', logoLight: '', summary: '요약을 입력하세요.', highlights: ['핵심 업무'], blocks: [{ title: '새 업무', period: '기간', meta: '', body: '업무 설명을 입력하세요.', bullets: ['주요 업무'] }] },
       projects: { category: content[lang].projects.categories[0] || 'PR', company: content[lang].experience.items?.[0]?.company || '', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], tasks: ['주요 업무'], results: ['성과'] },
       skills: { icon: '⌁', title: '새 기술스택', chips: ['항목'] },
       layout: { id: `page-${Date.now()}`, title: '새 페이지', subtitle: '서브타이틀', body: '본문을 입력하세요.', enabled: true }
@@ -433,6 +473,16 @@
   });
   addButton.addEventListener('click', addItem);
   form.addEventListener('click', event => {
+    const addBlockPath = event.target.dataset.addBlock;
+    if (addBlockPath) {
+      collect();
+      const blocks = getByPath(addBlockPath);
+      if (Array.isArray(blocks)) {
+        blocks.push({ title: '새 업무', period: '기간', meta: '', body: '업무 설명을 입력하세요.', bullets: ['주요 업무'] });
+        renderActive();
+      }
+      return;
+    }
     const removePath = event.target.dataset.remove;
     if (!removePath) return;
     collect();
