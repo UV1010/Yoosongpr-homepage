@@ -793,7 +793,8 @@ body[data-theme="light"] .experience-timeline-item::after {
 
 .experience-detail-button {
   display: inline-block;
-  margin-top: 14px;
+  margin-top: 10px;
+  padding: 0;
   border: 0;
   color: var(--text);
   background: transparent;
@@ -806,6 +807,18 @@ body[data-theme="light"] .experience-timeline-item::after {
   content: "⌄";
   margin-right: 8px;
   color: var(--blue);
+}
+
+.experience-detail-button[aria-expanded="true"]::before {
+  content: "⌃";
+}
+
+.experience-detail-panel {
+  margin-top: 14px;
+}
+
+.experience-detail-panel[hidden] {
+  display: none;
 }
 
 .project-tabs {

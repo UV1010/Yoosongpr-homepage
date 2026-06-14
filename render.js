@@ -208,9 +208,11 @@
                           <h4>${escapeHtml(block.title)}</h4>
                           ${block.period ? `<p class="experience-block-period">${escapeHtml(block.period)}</p>` : ''}
                           ${block.meta ? `<p class="experience-block-meta">${escapeHtml(block.meta)}</p>` : ''}
-                          ${block.body ? `<p class="experience-block-body">${escapeHtml(block.body)}</p>` : ''}
-                          ${list(block.bullets)}
-                          <span class="experience-detail-button">${escapeHtml(lang === 'en' ? 'View details' : '상세 내용 보기')}</span>
+                          <button type="button" class="experience-detail-button" aria-expanded="false">${escapeHtml(lang === 'en' ? 'View details' : '상세 내용 보기')}</button>
+                          <div class="experience-detail-panel" hidden>
+                            ${block.body ? `<p class="experience-block-body">${escapeHtml(block.body)}</p>` : ''}
+                            ${list(block.bullets)}
+                          </div>
                         </section>
                       `)
                       .join('')}
@@ -594,6 +596,17 @@
     });
   }
 
+  function setupExperienceDetails() {
+    document.querySelectorAll('.experience-detail-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const panel = button.nextElementSibling;
+        const isOpen = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!isOpen));
+        if (panel) panel.hidden = isOpen;
+      });
+    });
+  }
+
   function applyTheme(theme) {
     document.body.dataset.theme = theme;
     localStorage.setItem(themeKey, theme);
@@ -640,6 +653,7 @@
 
     document.getElementById('site-footer').innerHTML = `<span>${escapeHtml(data.footer)}</span>`;
     setupTheme(data.settings.defaultTheme);
+    setupExperienceDetails();
     setupProjects();
   }
 
