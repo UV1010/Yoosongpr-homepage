@@ -1,4 +1,4 @@
-window.PORTFOLIO_STORAGE_KEY = 'yoo-portfolio-content-published-1781456613169';
+window.PORTFOLIO_STORAGE_KEY = 'yoo-portfolio-content-published-1781456794525';
 window.PORTFOLIO_ADMIN_SESSION_KEY = 'yoo-portfolio-admin-session';
 window.PORTFOLIO_ADMIN_PASSWORD = 'gksksla0216';
 
