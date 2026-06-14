@@ -349,6 +349,7 @@
       return `
         <div class="project-media-item">
           <iframe src="https://www.youtube.com/embed/${escapeHtml(youtubeId)}" title="${escapeHtml(label)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <button class="media-play" data-media-play="${index}" type="button" aria-label="${escapeHtml(label)} 재생">▶</button>
           <button class="media-expand" data-media-expand="${index}" type="button" aria-label="${escapeHtml(label)} 크게 보기"></button>
         </div>
       `;
@@ -511,6 +512,18 @@
           event.preventDefault();
           event.stopPropagation();
           openMediaViewer(media[Number(button.dataset.mediaExpand)]);
+        });
+      });
+      root.querySelectorAll('[data-media-play]').forEach(button => {
+        button.addEventListener('click', event => {
+          event.preventDefault();
+          event.stopPropagation();
+          const item = button.closest('.project-media-item');
+          const iframe = item?.querySelector('iframe');
+          if (!item || !iframe) return;
+          const src = iframe.getAttribute('src') || '';
+          iframe.setAttribute('src', src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`);
+          item.classList.add('is-playing');
         });
       });
       updateDots();
