@@ -17,11 +17,12 @@
   let content = load();
 
   const panelMeta = {
-    hero: ['첫 화면', '이름, 직무, 소개 문구, 버튼 위치를 수정합니다.'],
+    hero: ['첫 화면', '이름, 직무, 소개 문구, 대표 프로젝트와 버튼 위치를 수정합니다.'],
     about: ['소개', '3단 카드의 제목, 아이콘, 태그, 설명을 수정합니다.'],
     experience: ['경력', '회사, 기간, 요약, 상세 업무를 수정합니다.'],
     projects: ['프로젝트', '카테고리, 카드 문구, 주요 업무, 성과를 수정합니다.'],
     skills: ['기술스택', '첨부 이미지처럼 행 단위 기술스택을 수정합니다.'],
+    contact: ['연락처', '함께 이야기해요 섹션의 문구와 이메일을 수정합니다.'],
     layout: ['레이아웃 / 페이지', '섹션 순서와 추가 페이지를 관리합니다.'],
     json: ['JSON 백업', '전체 데이터를 내보내거나 복원합니다.']
   };
@@ -63,6 +64,9 @@
       const defaultProjects = window.DEFAULT_SITE_CONTENT?.[lang]?.projects?.items || [];
       const defaultByTitle = new Map(defaultProjects.map(project => [project.title, project]));
       const fallbackCompany = siteContent[lang]?.experience?.items?.[0]?.company || '';
+      if (!siteContent[lang]?.hero?.featuredProject) {
+        siteContent[lang].hero.featuredProject = window.DEFAULT_SITE_CONTENT?.[lang]?.hero?.featuredProject || defaultProjects[0]?.title || '';
+      }
       (siteContent[lang]?.projects?.items || []).forEach(project => {
         const defaultProject = defaultByTitle.get(project.title);
         if (!project.company) project.company = defaultProject?.company || fallbackCompany;
@@ -291,6 +295,7 @@
 
   function renderHero() {
     const lang = getLang();
+    const projectOptions = (content[lang].projects.items || []).map(item => item.title).filter(Boolean);
     form.innerHTML = `
       <div class="editor-grid">
         ${field('브랜드명', `${lang}.brand`)}
@@ -298,6 +303,7 @@
         ${field('직무 타이틀', `${lang}.hero.role`)}
         ${selectField('문구 정렬', `${lang}.hero.align`, ['left', 'center'])}
         ${selectField('버튼 위치', `${lang}.hero.buttonAlign`, ['left', 'center', 'right'])}
+        ${selectField('대표 프로젝트', `${lang}.hero.featuredProject`, projectOptions)}
         ${field('메인 버튼 문구', `${lang}.hero.primaryCta`)}
         ${field('메인 버튼 링크', `${lang}.hero.primaryHref`)}
         ${field('보조 버튼 문구', `${lang}.hero.secondaryCta`)}
@@ -321,6 +327,19 @@
       ).join('')}
     `;
     addButton.hidden = false;
+  }
+
+  function renderContact() {
+    const lang = getLang();
+    form.innerHTML = `
+      <div class="editor-grid">
+        ${field('섹션 제목', `${lang}.contact.title`)}
+        ${field('서브타이틀', `${lang}.contact.subtitle`)}
+        ${field('이메일', `${lang}.contact.email`)}
+      </div>
+      ${field('본문', `${lang}.contact.body`, 'textarea')}
+    `;
+    addButton.hidden = true;
   }
 
   function renderExperience() {
@@ -444,7 +463,7 @@
     const [title, desc] = panelMeta[activePanel];
     panelTitle.textContent = title;
     panelDesc.textContent = desc;
-    ({ hero: renderHero, about: renderAbout, experience: renderExperience, projects: renderProjects, skills: renderSkills, layout: renderLayout, json: renderJson }[activePanel])();
+    ({ hero: renderHero, about: renderAbout, experience: renderExperience, projects: renderProjects, skills: renderSkills, contact: renderContact, layout: renderLayout, json: renderJson }[activePanel])();
   }
 
   function addItem() {

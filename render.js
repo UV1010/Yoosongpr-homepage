@@ -44,6 +44,9 @@
       const defaultProjects = defaults?.[contentLang]?.projects?.items || [];
       const defaultByTitle = new Map(defaultProjects.map(project => [project.title, project]));
       const fallbackCompany = siteContent[contentLang]?.experience?.items?.[0]?.company || '';
+      if (!siteContent[contentLang]?.hero?.featuredProject) {
+        siteContent[contentLang].hero.featuredProject = defaults?.[contentLang]?.hero?.featuredProject || defaultProjects[0]?.title || '';
+      }
       (siteContent[contentLang]?.projects?.items || []).forEach(project => {
         const defaultProject = defaultByTitle.get(project.title);
         if (!project.company) project.company = defaultProject?.company || fallbackCompany;
@@ -147,6 +150,7 @@
   }
 
   function renderHero(data) {
+    const featuredProject = data.hero.featuredProject || '';
     return `
       <section class="hero hero-${escapeHtml(data.hero.align || 'center')}" aria-label="${lang === 'en' ? 'Portfolio intro' : '포트폴리오 소개'}">
         <div class="hero-inner">
@@ -155,7 +159,7 @@
           <p class="hero-copy">${escapeHtml(data.hero.copy)}</p>
           <div class="hero-actions align-${escapeHtml(data.hero.buttonAlign || 'center')}">
             <a class="button" href="${escapeHtml(data.hero.primaryHref)}" download>${escapeHtml(data.hero.primaryCta)}</a>
-            <a class="button" href="#projects">${escapeHtml(data.hero.secondaryCta)}</a>
+            <a class="button" href="#projects" ${featuredProject ? `data-featured-project="${escapeHtml(featuredProject)}"` : ''}>${escapeHtml(data.hero.secondaryCta)}</a>
           </div>
           <div class="socials" aria-label="Social links">
             ${(data.hero.socials || [])
@@ -482,6 +486,16 @@
       setupModalMedia(modal);
       modal.querySelector('.project-modal-close')?.focus();
     }
+
+    document.querySelectorAll('[data-featured-project]').forEach(button => {
+      button.addEventListener('click', event => {
+        const title = button.dataset.featuredProject;
+        const index = data.projects.items.findIndex(item => item.title === title);
+        if (index < 0) return;
+        event.preventDefault();
+        openModal(index);
+      });
+    });
 
     function setupModalMedia(root) {
       const track = root.querySelector('.project-media-track');

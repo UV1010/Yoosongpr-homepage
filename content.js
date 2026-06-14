@@ -122,6 +122,7 @@ window.DEFAULT_SITE_CONTENT = {
       primaryCta: '경력기술서 다운로드',
       primaryHref: './assets/yuseongyeol-career-profile.pdf',
       secondaryCta: '대표 프로젝트 보기',
+      featuredProject: '세방그룹 PR 광고 캠페인',
       socials: [
         { label: '이메일', href: 'mailto:hello@example.com', icon: '✉' },
         { label: '프로젝트', href: '#projects', icon: '◈' },
@@ -235,6 +236,7 @@ window.DEFAULT_SITE_CONTENT = {
       primaryCta: 'Download Profile',
       primaryHref: './assets/yuseongyeol-career-profile.pdf',
       secondaryCta: 'View Projects',
+      featuredProject: 'Sebang Group PR Campaign',
       socials: [
         { label: 'Email', href: 'mailto:hello@example.com', icon: '✉' },
         { label: 'Projects', href: '#projects', icon: '◈' },
