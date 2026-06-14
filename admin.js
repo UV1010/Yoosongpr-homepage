@@ -84,13 +84,18 @@
 
   function sortProjectItems(projects) {
     if (!projects || !Array.isArray(projects.items)) return;
+    projects.items.forEach((item, index) => {
+      if (!item.order) item.order = String(index + 1);
+    });
     const categoryOrder = new Map((projects.categories || []).map((category, index) => [category, index]));
     projects.items = projects.items
       .map((item, index) => ({ item, index }))
       .sort((a, b) => {
         const aOrder = categoryOrder.has(a.item.category) ? categoryOrder.get(a.item.category) : Number.MAX_SAFE_INTEGER;
         const bOrder = categoryOrder.has(b.item.category) ? categoryOrder.get(b.item.category) : Number.MAX_SAFE_INTEGER;
-        return aOrder - bOrder || a.index - b.index;
+        const aDisplayOrder = Number(a.item.order) || a.index + 1;
+        const bDisplayOrder = Number(b.item.order) || b.index + 1;
+        return aOrder - bOrder || aDisplayOrder - bDisplayOrder || a.index - b.index;
       })
       .map(entry => entry.item);
   }
@@ -142,25 +147,16 @@
 
   function selectField(label, path, options) {
     const value = getByPath(path);
-    const values = [...new Set([value, ...(options || [])].filter(Boolean))];
+    const currentValue = String(value ?? '');
+    const values = [...new Set([currentValue, ...(options || []).map(option => String(option))].filter(Boolean))];
     return `
       <label class="admin-field">
         <span>${label}</span>
         <select data-path="${path}">
-          ${values.map(option => `<option value="${escapeHtml(option)}" ${option === value ? 'selected' : ''}>${escapeHtml(option)}</option>`).join('')}
+          ${values.map(option => `<option value="${escapeHtml(option)}" ${option === currentValue ? 'selected' : ''}>${escapeHtml(option)}</option>`).join('')}
         </select>
       </label>
     `;
-  }
-
-  function experienceBlockTitleOptions(lang) {
-    const defaults = window.DEFAULT_SITE_CONTENT?.[lang]?.experience?.items || [];
-    const saved = content[lang]?.experience?.items || [];
-    const titles = [...defaults, ...saved].flatMap(item => (item.blocks || []).map(block => block.title));
-    const presets = lang === 'en'
-      ? ['Group PR & Advertising', 'Brand Promotion', 'Website / Digital', 'Media Relations', 'Design / Content', 'AI / DX']
-      : ['그룹 PR & 광고 집행', '브랜드 프로모션', '웹사이트 / 디지털', '언론홍보', '디자인 / 콘텐츠', 'AI / DX'];
-    return [...new Set([...titles, ...presets].filter(Boolean))];
   }
 
   function arrayField(label, path) {
@@ -264,7 +260,6 @@
 
   function experienceEditor(item, path, fields) {
     const blocks = Array.isArray(item.blocks) ? item.blocks : [];
-    const titleOptions = experienceBlockTitleOptions(getLang());
     return `
       <details class="editor-card project-editor-card">
         <summary class="project-editor-summary">
@@ -279,7 +274,7 @@
             ${blocks.map((block, index) => `
               <article class="experience-admin-block">
                 <strong>${escapeHtml(block.title || `업무 ${index + 1}`)}</strong>
-                ${selectField('업무 제목', `${path}.blocks.${index}.title`, titleOptions)}
+                ${field('업무 제목', `${path}.blocks.${index}.title`)}
                 ${field('기간', `${path}.blocks.${index}.period`)}
                 ${field('인원/메타 정보', `${path}.blocks.${index}.meta`)}
                 ${arrayField('업무 bullet', `${path}.blocks.${index}.bullets`)}
@@ -351,6 +346,11 @@
   function renderProjects() {
     const lang = getLang();
     sortProjectItems(content[lang].projects);
+    const categoryOptions = content[lang].projects.categories || [];
+    const orderOptions = Array.from(
+      { length: Math.max(1, content[lang].projects.items?.length || 1) },
+      (_, index) => String(index + 1)
+    );
     const companyOptions = (content[lang].experience.items || []).map(item => item.company).filter(Boolean);
     form.innerHTML = `
       <div class="editor-grid">
@@ -360,7 +360,8 @@
       </div>
       ${(content[lang].projects.items || []).map((_, index) =>
         projectEditor(_, `${lang}.projects.items.${index}`, [
-          { label: '카테고리', key: 'category' },
+          { label: '카테고리', key: 'category', kind: 'select', options: categoryOptions },
+          { label: '노출 순서', key: 'order', kind: 'select', options: orderOptions },
           { label: '경력 회사명 선택', key: 'company', kind: 'select', options: companyOptions },
           { label: '기간', key: 'date' },
           { label: '제목', key: 'title' },
@@ -452,7 +453,7 @@
     const templates = {
       about: { icon: '◈', tags: ['Tag'], title: '새 소개 카드', body: '설명을 입력하세요.' },
       experience: { company: '새 회사', role: '직무', period: '기간', tenure: '', logo: 'N', logoDark: '', logoLight: '', summary: '요약을 입력하세요.', highlights: ['핵심 업무'], blocks: [{ title: '새 업무', period: '기간', meta: '', bullets: ['주요 업무'] }] },
-      projects: { category: content[lang].projects.categories[0] || 'PR', company: content[lang].experience.items?.[0]?.company || '', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], tasks: ['주요 업무'], results: ['성과'] },
+      projects: { category: content[lang].projects.categories[0] || 'PR', order: String((content[lang].projects.items || []).length + 1), company: content[lang].experience.items?.[0]?.company || '', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], tasks: ['주요 업무'], results: ['성과'] },
       skills: { icon: '⌁', title: '새 기술스택', chips: ['항목'] },
       layout: { id: `page-${Date.now()}`, title: '새 페이지', subtitle: '서브타이틀', body: '본문을 입력하세요.', enabled: true }
     };
