@@ -285,8 +285,8 @@
       <div class="editor-grid">${field('섹션 제목', `${lang}.experience.title`)}${field('서브타이틀', `${lang}.experience.subtitle`)}</div>
       ${(content[lang].experience.items || []).map((_, index) =>
         cardEditor(_, `${lang}.experience.items.${index}`, [
-          { label: '다크모드 회사 로고', key: 'logoDark', kind: 'file', accept: 'image/*', multiple: false, helper: '다크모드에서 보일 회사 로고 이미지를 업로드합니다.' },
-          { label: '화이트모드 회사 로고', key: 'logoLight', kind: 'file', accept: 'image/*', multiple: false, helper: '화이트모드에서 보일 회사 로고 이미지를 업로드합니다.' },
+          { label: '다크모드 회사 로고 URL', key: 'logoDark' },
+          { label: '화이트모드 회사 로고 URL', key: 'logoLight' },
           { label: '회사명', key: 'company' },
           { label: '직급/부서', key: 'role' },
           { label: '기간', key: 'period' },
