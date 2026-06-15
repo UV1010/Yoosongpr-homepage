@@ -169,6 +169,40 @@
     return `<div class="card-tags">${values.map(item => `<span>${escapeHtml(item)}</span>`).join('')}</div>`;
   }
 
+  function heroContactIcons(data) {
+    const contact = data.contact || {};
+    const email = String(contact.email || '').trim();
+    const phone = String(contact.phone || '').trim();
+    const phoneHref = phone.replace(/[^\d+]/g, '');
+    const items = [
+      {
+        label: 'Instagram',
+        href: contact.instagram || contact.instagramUrl || '#contact',
+        icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="4.5" width="15" height="15" rx="4.2"></rect><circle cx="12" cy="12" r="3.7"></circle><circle cx="16.8" cy="7.2" r="0.8"></circle></svg>'
+      },
+      {
+        label: 'Email',
+        href: email ? `mailto:${email}` : '',
+        icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"></rect><path d="M4.5 7l7.5 6 7.5-6"></path></svg>'
+      },
+      {
+        label: 'Phone',
+        href: phoneHref ? `tel:${phoneHref}` : '',
+        icon: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2.4"></rect><path d="M10.5 17.5h3"></path></svg>'
+      }
+    ].filter(item => item.href);
+    if (!items.length) return '';
+    return `
+      <div class="socials" aria-label="Contact links">
+        ${items.map(item => `
+          <a href="${escapeHtml(item.href)}" aria-label="${escapeHtml(item.label)}" data-tooltip="${escapeHtml(item.label)}">
+            ${item.icon}
+          </a>
+        `).join('')}
+      </div>
+    `;
+  }
+
   function companyLogo(company, className = '') {
     if (!company) return '';
     const fallback = company.logo || company.company?.slice(0, 2) || '';
@@ -215,11 +249,7 @@
             <a class="button" href="${escapeHtml(data.hero.primaryHref)}" download>${escapeHtml(data.hero.primaryCta)}</a>
             <a class="button" href="#projects" ${featuredProject ? `data-featured-project="${escapeHtml(featuredProject)}"` : ''}>${escapeHtml(data.hero.secondaryCta)}</a>
           </div>
-          <div class="socials" aria-label="Social links">
-            ${(data.hero.socials || [])
-              .map(item => `<a href="${escapeHtml(item.href)}" aria-label="${escapeHtml(item.label)}">${escapeHtml(item.icon)}</a>`)
-              .join('')}
-          </div>
+          ${heroContactIcons(data)}
           <a class="scroll-cue" href="#about" aria-label="Scroll"><span>${escapeHtml(data.ui.scroll)}</span><i></i></a>
         </div>
       </section>

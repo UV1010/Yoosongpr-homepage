@@ -423,6 +423,7 @@
       <div class="editor-grid">
         ${field('섹션 제목', `${lang}.contact.title`)}
         ${field('서브타이틀', `${lang}.contact.subtitle`)}
+        ${field('인스타그램 URL', `${lang}.contact.instagram`)}
         ${field('이메일', `${lang}.contact.email`)}
         ${field('휴대폰 번호', `${lang}.contact.phone`)}
       </div>

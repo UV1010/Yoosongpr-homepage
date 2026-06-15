@@ -739,6 +739,7 @@ window.DEFAULT_SITE_CONTENT = {
       "title": "언제든지 편하게 연락주세요.",
       "subtitle": "Contact",
       "body": "홍보, 브랜드 마케팅, 디자인 관련 협업과 채용 문의를 편하게 보내주세요.",
+      "instagram": "",
       "email": "dodo0216@naver.com",
       "phone": "010-2828-7087"
     },
@@ -1168,7 +1169,9 @@ window.DEFAULT_SITE_CONTENT = {
       "title": "Let’s Talk",
       "subtitle": "Contact",
       "body": "For PR, brand marketing, design, communication, or hiring inquiries, feel free to reach out.",
-      "email": "hello@example.com"
+      "instagram": "",
+      "email": "hello@example.com",
+      "phone": ""
     },
     "footer": "© 2026 Sungyeol Yoo. All rights reserved."
   }
