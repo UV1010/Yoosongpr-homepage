@@ -932,6 +932,8 @@ body[data-theme="light"] .project-visual-empty {
 
 .project-body {
   position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 32px;
 }
 
@@ -955,7 +957,19 @@ body[data-theme="light"] .project-visual-empty {
 }
 
 .project-body h3 {
+  display: -webkit-box;
+  overflow: hidden;
   margin: 8px 0 14px;
+  line-height: 1.35;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.project-body > p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .project-role {
