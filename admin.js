@@ -54,6 +54,8 @@
 
   function normalizeContent(siteContent) {
     const hasUsableMedia = media => Array.isArray(media) && media.some(item => String(item || '').trim());
+    const hasRextremeResults = values => Array.isArray(values) && values.some(value => /REXTREME|렉스트림|참가자 모집|홍범석|몬스터에너지|후원사/.test(String(value || '')));
+    const isAppexProject = project => /APPEX|해외 전시회|전시회 홍보 부스/.test(String(project?.title || ''));
     ['ko', 'en'].forEach(lang => {
       const defaultExperiences = window.DEFAULT_SITE_CONTENT?.[lang]?.experience?.items || [];
       const defaultExperienceByCompany = new Map(defaultExperiences.map(item => [item.company, item]));
@@ -77,7 +79,11 @@
         if (!Array.isArray(project.tasks) || !project.tasks.length) {
           project.tasks = Array.isArray(defaultProject?.tasks) ? defaultProject.tasks : [];
         }
-        if (!Array.isArray(project.results) || !project.results.length) {
+        if (isAppexProject(project) && (hasRextremeResults(project.results) || hasRextremeResults(project.bullets))) {
+          project.results = [];
+          project.bullets = [];
+        }
+        if (!Array.isArray(project.results)) {
           project.results = Array.isArray(project.bullets) && project.bullets.length
             ? project.bullets
             : Array.isArray(defaultProject?.results)
