@@ -1,4 +1,4 @@
-window.PORTFOLIO_STORAGE_KEY = 'yoo-portfolio-content-published-1781456794525';
+window.PORTFOLIO_STORAGE_KEY = 'yoo-portfolio-content-published-1781510303502';
 window.PORTFOLIO_ADMIN_SESSION_KEY = 'yoo-portfolio-admin-session';
 window.PORTFOLIO_ADMIN_PASSWORD = 'gksksla0216';
 
@@ -294,15 +294,15 @@ window.DEFAULT_SITE_CONTENT = {
             "./assets/project-media/pr2.jpg"
           ],
           "tasks": [
-            "그룹 PR 광고 진행을 위한 대행사 RFP 작성•선정 및 경쟁 PT 진행",
-            "광고 진행을 위한 대행사 선정 단계 기획 및 진행",
-            "임원 및 내부 직원 대상 설문조사 자료 작성, 내부 의견 수렴 및 방향성 제시",
-            "광고 시안 검토 및 수정사항 취합, 제작사 전달 및 제작 일정 관리",
-            "시안 피드백",
-            "일정 관리",
-            "광고 제작예산",
-            "매체 및 채널 비중 조율, 계약서 관리",
-            "진행 레포트 관리 및 보고서 작성"
+            "• 그룹 PR 광고 진행을 위한 대행사 RFP 작성선정 및 경쟁 PT 진행",
+            "• 광고 진행을 위한 대행사 선정 단계 기획 및 진행",
+            "- 임원 및 내부 직원 대상 설문조사 자료 작성, 내부 의견 수렴 및 방향성 제시",
+            "• 광고 시안 검토 및 수정사항 취합, 제작사 전달 및 제작 일정 관리",
+            "- 시안 피드백",
+            "- 일정 관리",
+            "- 광고 제작예산",
+            "- 매체 및 채널 비중 조율, 계약서 관리",
+            "• 진행 레포트 관리 및 보고서 작성"
           ],
           "results": [
             "YouTube 광고 예산 2억 원 운영: 노출수(인스트림 15초) 4,489만 건 및 조회수 약 725만 건 달성  (목표 대비 280% 초과 달성)",
@@ -310,15 +310,38 @@ window.DEFAULT_SITE_CONTENT = {
             "TVC(지상파, 종편) 광고 GRP 852 달성(목표 750"
           ],
           "company": "세방그룹 · 세방(주)",
-          "order": "1"
+          "order": "1",
+          "articles": []
+        },
+        {
+          "category": "PR",
+          "order": "10",
+          "company": "세방그룹 · 세방(주)",
+          "date": "기간",
+          "title": "[PR] 언론홍보 및 대응",
+          "role": "역할",
+          "body": "프로젝트 설명을 입력하세요.",
+          "media": [
+            "./assets/project-media/sebang.jpg"
+          ],
+          "chips": [
+            "Tag"
+          ],
+          "tasks": [
+            "주요 업무"
+          ],
+          "results": [
+            "로케트배터리, 군부대 배터리 안전교육 실시 https://www.wowtv.co.kr/NewsCenter/News/Read?articleId=202411076954O"
+          ],
+          "articles": []
         },
         {
           "category": "Branding",
-          "visual": "visual-purple",
+          "visual": "visual-mint",
           "date": "2025.09 - 2026.01",
           "title": "REXTREME 로케트배터리 익스트림 레이스 스포츠 마케팅",
           "role": "브랜드 프로모션 기획·디자인·PM",
-          "body": "로케트배터리 스포츠 마케팅 프로모션으로 콘셉트, 로고, 디자인 가이드, 대행사 선정과 후원사 협의를 진행했습니다.\n\n✅ 주요업무\n- 초기 기획 및 컨셉 가이드 도출, 대회 기획안 제작\n- 로고디자인 및 대회컨셉 선정\n- 대회 로고 디자인 제작(100%), 디자인 가이드 제작 참여**\n- 대회 대행업체 선정, 디자인 시안 검토를 위한 관련 부서 의견 취합 및 피드백 반영\n- 최종 디자인 확정 및 현지 제작 일정·스케줄 관리, 운영 전반 감독\n- 언론 보도자료 작성 및 배포",
+          "body": "로케트배터리 스포츠 마케팅 프로모션으로 콘셉트, 로고, 디자인 가이드, 대행사 선정과 후원사 협의를 진행했습니다.",
           "chips": [
             "브랜드기획",
             "프로젝트 담당",
@@ -326,9 +349,9 @@ window.DEFAULT_SITE_CONTENT = {
             "프로모션"
           ],
           "bullets": [
-            "> 참가자 모집 조기마감, 약 1,000여명의 참가자 지원",
-            "> 홍범석 인플루언서 섭외, 홍범석 유튜브 채널 브랜디드 콘텐츠로 바이럴 확산",
-            "> 몬스터에너지드링크, CJ 제일제당, 등 10개 후원사 섭외, 티켓 판매 등 수익 창출을 통한 운영 예산 절감 (약 1억 원)"
+            "월평균 약 5,000명 방문",
+            "I-AWARD 2025 중견기업 부문 대상",
+            "미디어센터 콘텐츠 관리"
           ],
           "media": [
             "https://youtu.be/8DygzQ0HdtM?si=mjQ2nq34dIkUg70v",
@@ -338,34 +361,38 @@ window.DEFAULT_SITE_CONTENT = {
             "./assets/project-media/1781360091102-22d0bd-2-04.jpg",
             "./assets/project-media/1781360103019-3b16e9-2-12.jpg"
           ],
-          "tasks": [],
+          "tasks": [
+            "초기 기획 및 컨셉 가이드 도출, 대회 기획안 제작",
+            "로고디자인 및 대회컨셉 선정",
+            "대회 로고 디자인 제작(100%), 디자인 가이드 제작 참여",
+            "대회 대행업체 선정, 디자인 시안 검토를 위한 관련 부서 의견 취합 및 피드백 반영",
+            "최종 디자인 확정 및 현지 제작 일정·스케줄 관리, 운영 전반 감독",
+            "- 언론 보도자료 작성 및 배포"
+          ],
           "results": [
-            "> 참가자 모집 조기마감, 약 1,000여명의 참가자 지원",
-            "> 홍범석 인플루언서 섭외, 홍범석 유튜브 채널 브랜디드 콘텐츠로 바이럴 확산",
-            "> 몬스터에너지드링크, CJ 제일제당, 등 10개 후원사 섭외, 티켓 판매 등 수익 창출을 통한 운영 예산 절감 (약 1억 원)"
+            "참가자 모집 조기마감, 약 1,000여명의 참가자 지원",
+            "홍범석 인플루언서 섭외, 홍범석 유튜브 채널 브랜디드 콘텐츠로 바이럴 확산",
+            "몬스터에너지드링크, CJ 제일제당, 등 10개 후원사 섭외, 티켓 판매 등 수익 창출을 통한 운영 예산 절감 (약 1억 원)"
           ],
           "company": "세방그룹 · 세방(주)",
-          "order": "2"
+          "order": "2",
+          "articles": [
+            {
+              "url": "https://www.e2news.com/news/articleView.html?idxno=326762",
+              "title": "세방전지, 일산 킨텍스서 하이브리드 피트니스 레이스 대회 ‘렉스트림(REXTREME)’ 24일 개최",
+              "description": "대한민국을 대표하는 배터리 브랜드 ‘로케트 배터리’ 로 잘 알려진 세방전지에서 하이브리드 피트니스 레이스 대회 REXTREME(렉스트림)을 오는 1월 24일 토요일 일산 킨텍스 8B홀에서 개최한다.",
+              "image": "https://cdn.e2news.com/news/photo/202601/326762_225081_2740.jpg"
+            }
+          ]
         },
         {
           "category": "Branding",
-          "visual": "visual-mint",
+          "order": "3",
+          "company": "세방그룹 · 세방(주)",
           "date": "2024.11 - 2025.04",
           "title": "[웹] 세방그룹 및 세방전지 일본 홈페이지 기획 및 구축진행",
           "role": "브랜드 웹사이트 기획",
           "body": "관성과 정보 전달력을 강화하기 위해 세방그룹 공식 홈페이지와 일본 현지 법인 홈페이지 구축을 주도했습니다. \n그룹 아이덴티티를 유지하기 위해 디자인·레이아웃을 가이드 기준으로 정리하고, 제작업체와 지속적으로 커뮤니케이션하며 브랜드 컬러·로고 규정·디자인 가이드를 철저히 반영해 사이트를 구축했습니다. \n그 결과 ‘I-AWARD 2025’에서 중견기업 부문 대상을 수상했으며, 현재는 동일한 기준으로 미국·태국 등 해외 지사 웹사이트 확장 구축을 진행하고 있습니다.",
-          "chips": [
-            "기획",
-            "홈페이지관리",
-            "운영",
-            "웹",
-            "운영보고서"
-          ],
-          "bullets": [
-            "월평균 약 5,000명 방문",
-            "I-AWARD 2025 중견기업 부문 대상",
-            "미디어센터 콘텐츠 관리"
-          ],
           "media": [
             "./assets/project-media/home1.jpg",
             "./assets/project-media/home8.jpg",
@@ -375,6 +402,13 @@ window.DEFAULT_SITE_CONTENT = {
             "./assets/project-media/home5.jpg",
             "./assets/project-media/home6.jpg",
             "./assets/project-media/home7.jpg"
+          ],
+          "chips": [
+            "기획",
+            "홈페이지관리",
+            "운영",
+            "웹",
+            "운영보고서"
           ],
           "tasks": [
             "홈페이지 구축을 위한 전체 기획 및 운영 전략 수립",
@@ -389,8 +423,105 @@ window.DEFAULT_SITE_CONTENT = {
           "results": [
             "매월 평균 약 5,000여명 방문, 아이어워즈위원회 주관 ‘I-AWARD 2025’ 중견기업 부문 대상 수상"
           ],
+          "articles": []
+        },
+        {
+          "category": "Branding",
+          "order": "8",
           "company": "세방그룹 · 세방(주)",
-          "order": "3"
+          "date": "2025.06 - 2025.08",
+          "title": "[브랜드 기획] 세방그룹 로켓보이 캐릭터 활용방안 기획",
+          "role": "브랜드 활용방안",
+          "body": "그동안 만들어온 캐릭터의 이미지와 방향성에 맞게 좀 더 현실가능한 방법을 도출하고 효과적인 마케팅 프로모션으로 도출하였습니다. ",
+          "media": [
+            "./assets/project-media/boy1.jpg",
+            "./assets/project-media/boy2.jpg",
+            "./assets/project-media/boy3.jpg",
+            "./assets/project-media/boy4.jpg",
+            "./assets/project-media/boy5.jpg",
+            "./assets/project-media/boy6.jpg",
+            "./assets/project-media/boy7.jpg",
+            "./assets/project-media/boy8.jpg",
+            "./assets/project-media/boy9.jpg",
+            "./assets/project-media/boy10.jpg",
+            "./assets/project-media/boy11.jpg",
+            "./assets/project-media/boy12.jpg",
+            "./assets/project-media/boy13.jpg",
+            "./assets/project-media/boy14.jpg",
+            "./assets/project-media/boy15.jpg",
+            "./assets/project-media/boy16.jpg",
+            "./assets/project-media/boy17.jpg",
+            "./assets/project-media/boy18.jpg",
+            "./assets/project-media/boy19.jpg",
+            "./assets/project-media/boy20.jpg",
+            "./assets/project-media/boy21.jpg",
+            "./assets/project-media/boy22.jpg",
+            "./assets/project-media/boy23.jpg",
+            "./assets/project-media/boy24.jpg",
+            "./assets/project-media/boy25.jpg",
+            "./assets/project-media/boy26.jpg",
+            "./assets/project-media/boy27.jpg",
+            "./assets/project-media/boy28.jpg",
+            "./assets/project-media/boy29.jpg",
+            "./assets/project-media/boy30.jpg",
+            "./assets/project-media/boy31.jpg",
+            "./assets/project-media/boy32.jpg",
+            "./assets/project-media/boy33.jpg",
+            "./assets/project-media/boy34.jpg",
+            "./assets/project-media/boy35.jpg",
+            "./assets/project-media/boy36.jpg",
+            "./assets/project-media/boy37.jpg",
+            "./assets/project-media/boy38.jpg",
+            "./assets/project-media/boy39.jpg",
+            "./assets/project-media/boy40.jpg",
+            "./assets/project-media/boy41.jpg",
+            "./assets/project-media/boy42.jpg",
+            "./assets/project-media/boy43.jpg",
+            "./assets/project-media/boy44.jpg"
+          ],
+          "chips": [
+            "브랜드관리",
+            "기획",
+            "디자인",
+            "홍보방안",
+            "캐릭터"
+          ],
+          "tasks": [
+            "로켓보이 관련 형태, 컬러, 연상이미지 픽플리 앱 설문조사 실시",
+            "야구장 내 로켓보이 활용안(포토존, SNS이벤트, 콘텐츠, 굿즈, 콜라보 방안)",
+            "트레일런 로케트배터리 스폰서십진행, 현수막, 로켓보이 그래픽을 통한 브랜드 노출 방안 기획"
+          ],
+          "results": [
+            "로켓보이 롯데 입단식 및 롯데 자이언츠 브렌드데이 프로모션 진행",
+            "로케트 익스트림레이스 \"REXTREME\" 대회로 이어져 스포츠마케팅 진행"
+          ],
+          "articles": []
+        },
+        {
+          "category": "Branding",
+          "visual": "visual-purple",
+          "date": "2024.11 - 2025.06",
+          "title": "[브랜딩] 세방전지 로케트배터리 브랜드 홍보 부스 기획 및 운영",
+          "role": "초기 기획안 및 대행사 관리 운영",
+          "body": "프로젝트 설명을 입력하세요.",
+          "chips": [
+            "Tag"
+          ],
+          "bullets": [
+            "> 참가자 모집 조기마감, 약 1,000여명의 참가자 지원",
+            "> 홍범석 인플루언서 섭외, 홍범석 유튜브 채널 브랜디드 콘텐츠로 바이럴 확산",
+            "> 몬스터에너지드링크, CJ 제일제당, 등 10개 후원사 섭외, 티켓 판매 등 수익 창출을 통한 운영 예산 절감 (약 1억 원)"
+          ],
+          "media": [],
+          "tasks": [
+            "주요 업무"
+          ],
+          "results": [
+            "성과"
+          ],
+          "company": "세방그룹 · 세방(주)",
+          "order": "9",
+          "articles": []
         },
         {
           "category": "SNS",
@@ -419,7 +550,8 @@ window.DEFAULT_SITE_CONTENT = {
             "팔로워 약 5,000명 확보"
           ],
           "company": "세방그룹 · 세방(주)",
-          "order": "4"
+          "order": "4",
+          "articles": []
         },
         {
           "category": "Design",
@@ -448,7 +580,8 @@ window.DEFAULT_SITE_CONTENT = {
             "인쇄 교정 및 감리 진행"
           ],
           "company": "일양약품(주)",
-          "order": "5"
+          "order": "5",
+          "articles": []
         },
         {
           "category": "AI / DX",
@@ -484,7 +617,8 @@ window.DEFAULT_SITE_CONTENT = {
             "그룹사 직원 1,000명 이상 조회(평균 조회수 300~400회)",
             "AI 활용 신청자 40% 증가"
           ],
-          "order": "6"
+          "order": "6",
+          "articles": []
         },
         {
           "category": "AI / DX",
@@ -523,7 +657,8 @@ window.DEFAULT_SITE_CONTENT = {
             "뉴스클리핑 보고서 및 문서수기 작업을 AI를 통해 수집 자동화로 업무 효율성 강화"
           ],
           "company": "세방그룹 · 세방(주)",
-          "order": "7"
+          "order": "7",
+          "articles": []
         }
       ]
     },
@@ -577,7 +712,8 @@ window.DEFAULT_SITE_CONTENT = {
       "title": "언제든지 편하게 연락주세요.",
       "subtitle": "Contact",
       "body": "홍보, 브랜드 마케팅, 디자인 관련 협업과 채용 문의를 편하게 보내주세요.",
-      "email": "dodo0216@naver.com"
+      "email": "dodo0216@naver.com",
+      "phone": "010-2828-7087"
     },
     "footer": "© 2026 유성열. All rights reserved."
   },
@@ -796,7 +932,8 @@ window.DEFAULT_SITE_CONTENT = {
           "media": [
             "./assets/project-media/pr1.jpg",
             "./assets/project-media/pr2.jpg"
-          ]
+          ],
+          "articles": []
         },
         {
           "category": "Branding",
@@ -827,7 +964,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "company": "Sebang Group · Sebang Co., Ltd.",
           "order": "2",
-          "media": []
+          "media": [],
+          "articles": []
         },
         {
           "category": "Branding",
@@ -858,7 +996,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "company": "Sebang Group · Sebang Co., Ltd.",
           "order": "3",
-          "media": []
+          "media": [],
+          "articles": []
         },
         {
           "category": "SNS",
@@ -887,7 +1026,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "company": "Sebang Group · Sebang Co., Ltd.",
           "order": "4",
-          "media": []
+          "media": [],
+          "articles": []
         },
         {
           "category": "Design",
@@ -916,7 +1056,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "company": "Ilyang Pharmaceutical Co., Ltd.",
           "order": "5",
-          "media": []
+          "media": [],
+          "articles": []
         },
         {
           "category": "AI / DX",
@@ -945,7 +1086,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "company": "Sebang Group · Sebang Co., Ltd.",
           "order": "6",
-          "media": []
+          "media": [],
+          "articles": []
         }
       ]
     },
