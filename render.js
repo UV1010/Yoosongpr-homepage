@@ -92,13 +92,13 @@
   }
 
   function list(items) {
-    const values = (items || []).filter(Boolean);
+    const values = (items || []).filter(item => String(item || '').trim());
     if (!values.length) return '';
     return `<ul>${values.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
   }
 
   function lineBreakText(items) {
-    const value = Array.isArray(items) ? items.filter(Boolean).join('\n') : String(items || '');
+    const value = Array.isArray(items) ? items.filter(item => String(item || '').trim()).join('\n') : String(items || '');
     if (!value.trim()) return '';
     const html = value
       .split('\n')
@@ -118,7 +118,7 @@
   function articleCards(items) {
     const values = (items || [])
       .map(item => typeof item === 'string' ? { url: item } : item)
-      .filter(item => item && (item.url || item.title || item.description || item.image));
+      .filter(item => item && [item.url, item.title, item.description, item.image].some(value => String(value || '').trim()));
     if (!values.length) return '';
     return `
       <div class="article-bookmarks">
@@ -152,7 +152,7 @@
   }
 
   function chips(items) {
-    const values = (items || []).filter(Boolean);
+    const values = (items || []).filter(item => String(item || '').trim());
     if (!values.length) return '';
     return `<div class="chips">${values.map(item => `<span>${escapeHtml(item)}</span>`).join('')}</div>`;
   }
@@ -465,10 +465,10 @@
         </div>
       </header>
       ${renderProjectMedia(item)}
-      ${modalSection(overviewTitle, `<p>${escapeHtml(item.body)}</p>`)}
+      ${modalSection(overviewTitle, item.body?.trim() ? `<p>${escapeHtml(item.body)}</p>` : '')}
       ${modalSection(stackTitle, chips(item.chips))}
       ${modalSection(workTitle, lineBreakText(item.tasks))}
-      ${modalSection(resultTitle, lineBreakText(item.results || item.bullets))}
+      ${modalSection(resultTitle, lineBreakText(Array.isArray(item.results) ? item.results : item.bullets))}
       ${modalSection(articleTitle, articleCards(item.articles))}
     `;
   }
