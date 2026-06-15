@@ -214,13 +214,16 @@
     `;
   }
 
-  function arrayField(label, path) {
+  function arrayField(label, path, options = {}) {
     const value = getByPath(path) || [];
     const id = `field-${path.replaceAll('.', '-')}`;
+    const preserveIndent = options.preserveIndent ? ' data-preserve-indent="true"' : '';
+    const helper = options.helper ? `<small>${escapeHtml(options.helper)}</small>` : '';
     return `
       <label class="admin-field">
         <span>${label}</span>
-        <textarea id="${id}" data-path="${path}" data-array="true" rows="4">${escapeHtml(value.join('\n'))}</textarea>
+        <textarea id="${id}" data-path="${path}" data-array="true"${preserveIndent} rows="4">${escapeHtml(value.join('\n'))}</textarea>
+        ${helper}
       </label>
     `;
   }
@@ -297,7 +300,7 @@
           return { url, title, description, image };
         }).filter(item => item.url || item.title || item.description || item.image)
         : input.dataset.array === 'true' || Array.isArray(current)
-        ? input.value.split('\n').map(v => v.trim()).filter(Boolean)
+        ? input.value.split('\n').map(v => input.dataset.preserveIndent === 'true' ? v.replace(/\s+$/g, '') : v.trim()).filter(v => v.trim())
         : input.value;
       setByPath(input.dataset.path, value);
     });
@@ -314,6 +317,7 @@
 
   function editorField(path, config) {
     if (config.kind === 'textarea') return field(config.label, `${path}.${config.key}`, 'textarea');
+    if (config.kind === 'lines') return arrayField(config.label, `${path}.${config.key}`, { preserveIndent: true, helper: config.helper });
     if (config.kind === 'array') return arrayField(config.label, `${path}.${config.key}`);
     if (config.kind === 'articles') return articleField(config.label, `${path}.${config.key}`);
     if (config.kind === 'select') return selectField(config.label, `${path}.${config.key}`, config.options);
@@ -467,8 +471,8 @@
           { label: '사진/영상 첨부', key: 'media', kind: 'file' },
           { label: '상세 미디어 URL', key: 'media', kind: 'array' },
           { label: '태그', key: 'chips', kind: 'array' },
-          { label: '주요 업무', key: 'tasks', kind: 'array' },
-          { label: '성과', key: 'results', kind: 'array' },
+          { label: '주요 업무', key: 'tasks', kind: 'lines', helper: '줄 앞에 스페이스를 넣으면 홈페이지 상세창에서도 들여쓰기로 보입니다.' },
+          { label: '성과', key: 'results', kind: 'lines', helper: '줄 앞에 스페이스를 넣으면 홈페이지 상세창에서도 들여쓰기로 보입니다.' },
           { label: '보도기사', key: 'articles', kind: 'articles' }
         ])
       ).join('')}

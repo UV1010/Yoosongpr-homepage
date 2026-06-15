@@ -100,7 +100,7 @@
   function lineBreakText(items) {
     const value = Array.isArray(items) ? items.filter(Boolean).join('\n') : String(items || '');
     if (!value.trim()) return '';
-    return `<p class="line-break-text">${escapeHtml(value).replaceAll('\n', '<br>')}</p>`;
+    return `<p class="line-break-text">${escapeHtml(value)}</p>`;
   }
 
   function articleHostname(url) {

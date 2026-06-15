@@ -1410,7 +1410,7 @@ body[data-theme="light"] .project-modal-close {
 
 .modal-section .line-break-text {
   line-height: 1.85;
-  white-space: normal;
+  white-space: pre-wrap;
 }
 
 .modal-section .chips span {
