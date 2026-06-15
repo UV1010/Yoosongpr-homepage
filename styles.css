@@ -1360,22 +1360,17 @@ body[data-theme="light"] .project-modal-close {
   color: rgba(232, 237, 247, 0.62);
 }
 
-.project-modal-dots {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin: 4px 0 34px;
+.project-modal-count {
+  margin: 6px 0 34px;
+  color: rgba(232, 237, 247, 0.72);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-align: center;
 }
 
-.project-modal-dots i {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.24);
-}
-
-.project-modal-dots i.active {
-  background: #fff;
+body[data-theme="light"] .project-modal-count {
+  color: #475569;
 }
 
 .modal-section {

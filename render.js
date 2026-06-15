@@ -442,7 +442,7 @@
         </div>
         <button class="media-nav media-next" data-media-next type="button" aria-label="${lang === 'en' ? 'Next media' : '다음 미디어'}">›</button>
       </div>
-      <div class="project-modal-dots">${media.map((_, index) => `<i class="${index === 0 ? 'active' : ''}"></i>`).join('')}</div>
+      <div class="project-modal-count" data-media-count>01/${String(media.length).padStart(2, '0')}</div>
     `;
   }
 
@@ -556,7 +556,7 @@
 
     function setupModalMedia(root) {
       const track = root.querySelector('.project-media-track');
-      const dots = root.querySelectorAll('.project-modal-dots i');
+      const counter = root.querySelector('[data-media-count]');
       const media = Array.from(root.querySelectorAll('.project-media-item')).map(item => {
         const iframe = item.querySelector('iframe');
         const video = item.querySelector('video');
@@ -567,9 +567,13 @@
         return null;
       }).filter(Boolean);
       if (!track) return;
-      const updateDots = () => {
+      const updateCounter = () => {
         const index = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
-        dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === index));
+        if (counter) {
+          const current = String(Math.min(media.length, Math.max(1, index + 1))).padStart(2, '0');
+          const total = String(Math.max(1, media.length)).padStart(2, '0');
+          counter.textContent = `${current}/${total}`;
+        }
       };
       root.querySelector('[data-media-prev]')?.addEventListener('click', () => {
         track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
@@ -577,7 +581,8 @@
       root.querySelector('[data-media-next]')?.addEventListener('click', () => {
         track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
       });
-      track.addEventListener('scroll', updateDots, { passive: true });
+      track.addEventListener('scroll', updateCounter, { passive: true });
+      updateCounter();
       root.querySelectorAll('[data-media-expand]').forEach(button => {
         button.addEventListener('click', event => {
           event.preventDefault();
