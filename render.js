@@ -97,6 +97,40 @@
     return `<ul>${values.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
   }
 
+  function articleHostname(url) {
+    try {
+      return new URL(url, window.location.href).hostname.replace(/^www\./, '');
+    } catch {
+      return url || '';
+    }
+  }
+
+  function articleCards(items) {
+    const values = (items || [])
+      .map(item => typeof item === 'string' ? { url: item } : item)
+      .filter(item => item && (item.url || item.title || item.description || item.image));
+    if (!values.length) return '';
+    return `
+      <div class="article-bookmarks">
+        ${values.map(item => {
+          const url = item.url || '#';
+          const host = articleHostname(url);
+          const title = item.title || host || url;
+          return `
+            <a class="article-bookmark" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">
+              <span class="article-bookmark-copy">
+                <strong>${escapeHtml(title)}</strong>
+                ${item.description ? `<em>${escapeHtml(item.description)}</em>` : ''}
+                <small>${escapeHtml(host || url)}</small>
+              </span>
+              ${item.image ? `<span class="article-bookmark-image"><img src="${escapeHtml(item.image)}" alt="" loading="lazy" /></span>` : ''}
+            </a>
+          `;
+        }).join('')}
+      </div>
+    `;
+  }
+
   function multilineList(value, className = '') {
     const values = String(value || '')
       .split(/\r?\n/)
@@ -409,6 +443,7 @@
     const workTitle = lang === 'en' ? 'Key Responsibilities' : '주요 업무';
     const overviewTitle = lang === 'en' ? 'Overview' : '개요';
     const stackTitle = lang === 'en' ? 'Stack / Scope' : '기술 스택 / 범위';
+    const articleTitle = lang === 'en' ? 'Press Articles' : '보도기사';
     return `
       <header class="project-modal-head">
         <div class="project-modal-title-row">
@@ -424,6 +459,7 @@
       ${modalSection(stackTitle, chips(item.chips))}
       ${modalSection(workTitle, list(item.tasks))}
       ${modalSection(resultTitle, list(item.results || item.bullets))}
+      ${modalSection(articleTitle, articleCards(item.articles))}
     `;
   }
 

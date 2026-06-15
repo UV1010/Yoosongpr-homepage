@@ -20,7 +20,7 @@
     hero: ['첫 화면', '이름, 직무, 소개 문구, 대표 프로젝트와 버튼 위치를 수정합니다.'],
     about: ['소개', '3단 카드의 제목, 아이콘, 태그, 설명을 수정합니다.'],
     experience: ['경력', '회사, 기간, 요약, 상세 업무를 수정합니다.'],
-    projects: ['프로젝트', '카테고리, 카드 문구, 주요 업무, 성과를 수정합니다.'],
+    projects: ['프로젝트', '카테고리, 카드 문구, 주요 업무, 성과, 보도기사를 수정합니다.'],
     skills: ['기술스택', '첨부 이미지처럼 행 단위 기술스택을 수정합니다.'],
     contact: ['연락처', '함께 이야기해요 섹션의 문구와 이메일을 수정합니다.'],
     layout: ['레이아웃 / 페이지', '섹션 순서와 추가 페이지를 관리합니다.'],
@@ -83,6 +83,9 @@
             : Array.isArray(defaultProject?.results)
               ? defaultProject.results
             : [];
+        }
+        if (!Array.isArray(project.articles)) {
+          project.articles = Array.isArray(defaultProject?.articles) ? defaultProject.articles : [];
         }
       });
       sortProjectItems(siteContent[lang]?.projects);
@@ -222,6 +225,24 @@
     `;
   }
 
+  function articleField(label, path) {
+    const value = getByPath(path) || [];
+    const id = `field-${path.replaceAll('.', '-')}`;
+    const lines = value.map(item => [
+      item.url || '',
+      item.title || '',
+      item.description || '',
+      item.image || ''
+    ].join(' | '));
+    return `
+      <label class="admin-field">
+        <span>${label}</span>
+        <textarea id="${id}" data-path="${path}" data-articles="true" rows="6">${escapeHtml(lines.join('\n'))}</textarea>
+        <small>한 줄에 하나씩 입력하세요: 기사 URL | 제목 | 설명 1~2줄 | 이미지 URL</small>
+      </label>
+    `;
+  }
+
   function fileField(label, path, options = {}) {
     const accept = options.accept || 'image/*,video/mp4,video/webm,video/ogg';
     const multiple = options.multiple === false ? '' : ' multiple';
@@ -270,7 +291,12 @@
   function collect() {
     form.querySelectorAll('[data-path]').forEach(input => {
       const current = getByPath(input.dataset.path);
-      const value = input.dataset.array === 'true' || Array.isArray(current)
+      const value = input.dataset.articles === 'true'
+        ? input.value.split('\n').map(line => {
+          const [url = '', title = '', description = '', image = ''] = line.split('|').map(v => v.trim());
+          return { url, title, description, image };
+        }).filter(item => item.url || item.title || item.description || item.image)
+        : input.dataset.array === 'true' || Array.isArray(current)
         ? input.value.split('\n').map(v => v.trim()).filter(Boolean)
         : input.value;
       setByPath(input.dataset.path, value);
@@ -289,17 +315,20 @@
   function editorField(path, config) {
     if (config.kind === 'textarea') return field(config.label, `${path}.${config.key}`, 'textarea');
     if (config.kind === 'array') return arrayField(config.label, `${path}.${config.key}`);
+    if (config.kind === 'articles') return articleField(config.label, `${path}.${config.key}`);
     if (config.kind === 'select') return selectField(config.label, `${path}.${config.key}`, config.options);
     if (config.kind === 'file') return fileField(config.label, `${path}.${config.key}`, config);
     return field(config.label, `${path}.${config.key}`);
   }
 
   function projectEditor(item, path, fields) {
+    const articleCount = Array.isArray(item.articles) ? item.articles.length : 0;
     return `
       <details class="editor-card project-editor-card">
         <summary class="project-editor-summary">
           <span class="project-editor-category">${escapeHtml(item.category || '카테고리 없음')}</span>
           <strong>${escapeHtml(item.title || '제목 없음')}</strong>
+          <span class="project-editor-status">보도기사 ${articleCount}개</span>
           <span class="project-editor-toggle">펼치기</span>
         </summary>
         <div class="project-editor-fields">
@@ -439,10 +468,11 @@
           { label: '상세 미디어 URL', key: 'media', kind: 'array' },
           { label: '태그', key: 'chips', kind: 'array' },
           { label: '주요 업무', key: 'tasks', kind: 'array' },
-          { label: '성과', key: 'results', kind: 'array' }
+          { label: '성과', key: 'results', kind: 'array' },
+          { label: '보도기사', key: 'articles', kind: 'articles' }
         ])
       ).join('')}
-      <p class="editor-note">상세 창의 주요 업무와 성과는 각각 별도로 노출됩니다. 카드에는 개요와 기술 스택/범위만 노출됩니다.</p>
+      <p class="editor-note">보도기사는 “기사 URL | 제목 | 설명 1~2줄 | 이미지 URL” 형식으로 입력하면 상세 창에서 북마크 카드처럼 노출됩니다.</p>
     `;
     addButton.hidden = false;
   }
@@ -531,7 +561,7 @@
     const templates = {
       about: { icon: '◈', tags: ['Tag'], title: '새 소개 카드', body: '설명을 입력하세요.' },
       experience: { company: '새 회사', role: '직무', period: '기간', tenure: '', logo: 'N', logoDark: '', logoLight: '', summary: '요약을 입력하세요.', highlights: ['핵심 업무'], blocks: [{ title: '새 업무', period: '기간', meta: '', bullets: ['주요 업무'] }] },
-      projects: { category: content[lang].projects.categories[0] || 'PR', order: String((content[lang].projects.items || []).length + 1), company: content[lang].experience.items?.[0]?.company || '', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], tasks: ['주요 업무'], results: ['성과'] },
+      projects: { category: content[lang].projects.categories[0] || 'PR', order: String((content[lang].projects.items || []).length + 1), company: content[lang].experience.items?.[0]?.company || '', date: '기간', title: '새 프로젝트', role: '역할', body: '프로젝트 설명을 입력하세요.', media: [], chips: ['Tag'], tasks: ['주요 업무'], results: ['성과'], articles: [] },
       skills: { icon: '⌁', title: '새 기술스택', chips: ['항목'] },
       layout: { id: `page-${Date.now()}`, title: '새 페이지', subtitle: '서브타이틀', body: '본문을 입력하세요.', enabled: true }
     };
