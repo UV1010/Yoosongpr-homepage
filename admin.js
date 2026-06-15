@@ -236,12 +236,12 @@
       item.title || '',
       item.description || '',
       item.image || ''
-    ].join(' | '));
+    ].join(' / '));
     return `
       <label class="admin-field">
         <span>${label}</span>
         <textarea id="${id}" data-path="${path}" data-articles="true" rows="6">${escapeHtml(lines.join('\n'))}</textarea>
-        <small>한 줄에 하나씩 입력하세요: 기사 URL | 제목 | 설명 1~2줄 | 이미지 URL</small>
+        <small>한 줄에 하나씩 입력하세요: 기사 URL / 제목 / 설명 1~2줄 / 이미지 URL</small>
       </label>
     `;
   }
@@ -296,7 +296,8 @@
       const current = getByPath(input.dataset.path);
       const value = input.dataset.articles === 'true'
         ? input.value.split('\n').map(line => {
-          const [url = '', title = '', description = '', image = ''] = line.split('|').map(v => v.trim());
+          const parts = line.includes(' / ') ? line.split(' / ') : line.split('|');
+          const [url = '', title = '', description = '', image = ''] = parts.map(v => v.trim());
           return { url, title, description, image };
         }).filter(item => item.url || item.title || item.description || item.image)
         : input.dataset.array === 'true' || Array.isArray(current)
@@ -476,7 +477,7 @@
           { label: '보도기사', key: 'articles', kind: 'articles' }
         ])
       ).join('')}
-      <p class="editor-note">보도기사는 “기사 URL | 제목 | 설명 1~2줄 | 이미지 URL” 형식으로 입력하면 상세 창에서 북마크 카드처럼 노출됩니다.</p>
+      <p class="editor-note">보도기사는 “기사 URL / 제목 / 설명 1~2줄 / 이미지 URL” 형식으로 입력하면 상세 창에서 북마크 카드처럼 노출됩니다.</p>
     `;
     addButton.hidden = false;
   }
