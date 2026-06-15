@@ -97,6 +97,12 @@
     return `<ul>${values.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
   }
 
+  function lineBreakText(items) {
+    const value = Array.isArray(items) ? items.filter(Boolean).join('\n') : String(items || '');
+    if (!value.trim()) return '';
+    return `<p class="line-break-text">${escapeHtml(value).replaceAll('\n', '<br>')}</p>`;
+  }
+
   function articleHostname(url) {
     try {
       return new URL(url, window.location.href).hostname.replace(/^www\./, '');
@@ -457,8 +463,8 @@
       ${renderProjectMedia(item)}
       ${modalSection(overviewTitle, `<p>${escapeHtml(item.body)}</p>`)}
       ${modalSection(stackTitle, chips(item.chips))}
-      ${modalSection(workTitle, list(item.tasks))}
-      ${modalSection(resultTitle, list(item.results || item.bullets))}
+      ${modalSection(workTitle, lineBreakText(item.tasks))}
+      ${modalSection(resultTitle, lineBreakText(item.results || item.bullets))}
       ${modalSection(articleTitle, articleCards(item.articles))}
     `;
   }

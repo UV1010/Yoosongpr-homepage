@@ -808,7 +808,7 @@ body[data-theme="light"] .experience-timeline-item::after {
   color: var(--text);
   background: transparent;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 400;
   cursor: pointer;
 }
 
@@ -1406,6 +1406,11 @@ body[data-theme="light"] .project-modal-close {
 .modal-section li {
   color: rgba(232, 237, 247, 0.66);
   font-size: 16px;
+}
+
+.modal-section .line-break-text {
+  line-height: 1.85;
+  white-space: normal;
 }
 
 .modal-section .chips span {
