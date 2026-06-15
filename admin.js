@@ -236,12 +236,12 @@
       item.title || '',
       item.description || '',
       item.image || ''
-    ].join(' / '));
+    ].join(' | '));
     return `
       <label class="admin-field">
         <span>${label}</span>
         <textarea id="${id}" data-path="${path}" data-articles="true" rows="6">${escapeHtml(lines.join('\n'))}</textarea>
-        <small>한 줄에 하나씩 입력하세요: 기사 URL / 제목 / 설명 1~2줄 / 이미지 URL</small>
+        <small>한 줄에 하나씩 입력하세요: 기사 URL | 제목 | 설명 1~2줄 | 이미지 URL</small>
       </label>
     `;
   }
@@ -477,7 +477,7 @@
           { label: '보도기사', key: 'articles', kind: 'articles' }
         ])
       ).join('')}
-      <p class="editor-note">보도기사는 “기사 URL / 제목 / 설명 1~2줄 / 이미지 URL” 형식으로 입력하면 상세 창에서 북마크 카드처럼 노출됩니다.</p>
+      <p class="editor-note">보도기사는 “기사 URL | 제목 | 설명 1~2줄 | 이미지 URL” 형식으로 입력하면 상세 창에서 북마크 카드처럼 노출됩니다.</p>
     `;
     addButton.hidden = false;
   }
