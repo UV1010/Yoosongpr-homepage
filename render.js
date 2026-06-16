@@ -489,7 +489,7 @@
     const workTitle = lang === 'en' ? 'Key Responsibilities' : '주요 업무';
     const overviewTitle = lang === 'en' ? 'Overview' : '개요';
     const stackTitle = lang === 'en' ? 'Stack / Scope' : '기술 스택 / 범위';
-    const articleTitle = lang === 'en' ? 'Press Articles' : '보도기사';
+    const articleTitle = lang === 'en' ? 'Articles & Works' : '작성기사 및 제작물';
     return `
       <header class="project-modal-head">
         <div class="project-modal-title-row">

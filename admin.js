@@ -20,7 +20,7 @@
     hero: ['첫 화면', '이름, 직무, 소개 문구, 대표 프로젝트와 버튼 위치를 수정합니다.'],
     about: ['소개', '3단 카드의 제목, 아이콘, 태그, 설명을 수정합니다.'],
     experience: ['경력', '회사, 기간, 요약, 상세 업무를 수정합니다.'],
-    projects: ['프로젝트', '카테고리, 카드 문구, 주요 업무, 성과, 보도기사를 수정합니다.'],
+    projects: ['프로젝트', '카테고리, 카드 문구, 주요 업무, 성과, 작성기사 및 제작물을 수정합니다.'],
     skills: ['기술스택', '첨부 이미지처럼 행 단위 기술스택을 수정합니다.'],
     contact: ['연락처', '함께 이야기해요 섹션의 문구와 이메일을 수정합니다.'],
     layout: ['레이아웃 / 페이지', '섹션 순서와 추가 페이지를 관리합니다.'],
@@ -339,7 +339,7 @@
         <summary class="project-editor-summary">
           <span class="project-editor-category">${escapeHtml(item.category || '카테고리 없음')}</span>
           <strong>${escapeHtml(item.title || '제목 없음')}</strong>
-          <span class="project-editor-status">보도기사 ${articleCount}개</span>
+          <span class="project-editor-status">작성기사 및 제작물 ${articleCount}개</span>
           <span class="project-editor-toggle">펼치기</span>
         </summary>
         <div class="project-editor-fields">
@@ -481,10 +481,10 @@
           { label: '태그', key: 'chips', kind: 'array' },
           { label: '주요 업무', key: 'tasks', kind: 'lines', helper: '줄 앞에 스페이스를 넣으면 홈페이지 상세창에서도 들여쓰기로 보입니다.' },
           { label: '성과', key: 'results', kind: 'lines', helper: '줄 앞에 스페이스를 넣으면 홈페이지 상세창에서도 들여쓰기로 보입니다.' },
-          { label: '보도기사', key: 'articles', kind: 'articles' }
+          { label: '작성기사 및 제작물', key: 'articles', kind: 'articles' }
         ])
       ).join('')}
-      <p class="editor-note">보도기사는 “기사 URL | 제목 | 설명 1~2줄 | 이미지 URL” 형식으로 입력하면 상세 창에서 북마크 카드처럼 노출됩니다.</p>
+      <p class="editor-note">작성기사 및 제작물은 “기사 URL | 제목 | 설명 1~2줄 | 이미지 URL” 형식으로 입력하면 상세 창에서 북마크 카드처럼 노출됩니다.</p>
     `;
     addButton.hidden = false;
   }
