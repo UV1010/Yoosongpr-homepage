@@ -491,8 +491,7 @@ body[data-theme="light"] .socials a::after {
   margin-bottom: 18px;
 }
 
-.card-title-row h3,
-.skill-name h3 {
+.card-title-row h3 {
   margin-bottom: 0;
 }
 
@@ -1571,24 +1570,68 @@ body[data-theme="light"] .article-bookmark-copy small {
   margin: 22px 0;
 }
 
-.skill-stack {
+.skill-gauge-grid {
   display: grid;
-  gap: 22px;
-}
-
-.skill-row {
-  display: grid;
-  grid-template-columns: minmax(150px, 0.42fr) minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
-  align-items: center;
-  padding: 18px;
-  border-radius: 18px;
 }
 
-.skill-name {
+.skill-gauge-card {
+  display: grid;
+  gap: 24px;
+  padding: 34px;
+  border-radius: 34px;
+}
+
+.skill-gauge-head {
   display: flex;
   align-items: center;
   gap: 14px;
+}
+
+.skill-gauge-head h3 {
+  margin-bottom: 0;
+}
+
+.skill-gauge-list {
+  display: grid;
+  gap: 18px;
+}
+
+.skill-gauge-item {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.42fr) minmax(180px, 1fr);
+  gap: 22px;
+  align-items: center;
+}
+
+.skill-gauge-item span {
+  color: var(--text);
+  font-size: clamp(18px, 2.3vw, 28px);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.skill-gauge-track {
+  height: 44px;
+  padding: 5px;
+  border: 2px solid rgba(232, 237, 247, 0.78);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.skill-gauge-track i {
+  height: 100%;
+  display: block;
+  border-radius: 999px 0 0 999px;
+  background: var(--blue);
+  box-shadow: 0 0 24px rgba(112, 183, 255, 0.24);
+}
+
+body[data-theme="light"] .skill-gauge-track {
+  border-color: rgba(15, 23, 42, 0.36);
+  background: rgba(15, 23, 42, 0.05);
 }
 
 .compact {
@@ -1998,8 +2041,9 @@ footer {
   .card-grid.two,
   .impact-grid,
   .skill-groups,
+  .skill-gauge-grid,
+  .skill-gauge-item,
   .project-page,
-  .skill-row,
   .editor-layout,
   .project-card {
     grid-template-columns: 1fr;

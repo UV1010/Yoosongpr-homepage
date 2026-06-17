@@ -325,7 +325,7 @@
   function editorField(path, config) {
     if (config.kind === 'textarea') return field(config.label, `${path}.${config.key}`, 'textarea');
     if (config.kind === 'lines') return arrayField(config.label, `${path}.${config.key}`, { preserveIndent: true, helper: config.helper });
-    if (config.kind === 'array') return arrayField(config.label, `${path}.${config.key}`);
+    if (config.kind === 'array') return arrayField(config.label, `${path}.${config.key}`, { helper: config.helper });
     if (config.kind === 'articles') return articleField(config.label, `${path}.${config.key}`);
     if (config.kind === 'select') return selectField(config.label, `${path}.${config.key}`, config.options);
     if (config.kind === 'file') return fileField(config.label, `${path}.${config.key}`, config);
@@ -497,7 +497,7 @@
         cardEditor(_, `${lang}.skills.groups.${index}`, [
           { label: '아이콘', key: 'icon' },
           { label: '그룹명', key: 'title' },
-          { label: '스택/역량', key: 'chips', kind: 'array' }
+          { label: '스택/역량 게이지', key: 'chips', kind: 'array', helper: '한 줄에 하나씩 “항목명 | 점수” 형식으로 입력하세요. 예: Photoshop | 85' }
         ])
       ).join('')}
     `;

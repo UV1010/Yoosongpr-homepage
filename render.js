@@ -510,15 +510,36 @@
   }
 
   function renderSkills(data) {
+    const parseSkill = value => {
+      const [name = '', score = '70'] = String(value || '').split('|').map(item => item.trim());
+      const percent = Math.min(100, Math.max(0, Number(score) || 70));
+      return { name, percent };
+    };
     return `
       <section id="skills" class="section">
         <div class="section-title"><h2>${escapeHtml(data.skills.title)}</h2><p>${escapeHtml(data.skills.subtitle)}</p></div>
-        <div class="skill-stack">
+        <div class="skill-gauge-grid">
           ${(data.skills.groups || [])
             .map(group => `
-              <article class="glass-card skill-row">
-                <div class="skill-name"><span class="card-icon">${escapeHtml(group.icon || '⌁')}</span><h3>${escapeHtml(group.title)}</h3></div>
-                ${chips(group.chips)}
+              <article class="glass-card skill-gauge-card">
+                <div class="skill-gauge-head">
+                  <span class="card-icon">${escapeHtml(group.icon || '⌁')}</span>
+                  <h3>${escapeHtml(group.title)}</h3>
+                </div>
+                <div class="skill-gauge-list">
+                  ${(group.chips || []).map(item => {
+                    const skill = parseSkill(item);
+                    if (!skill.name) return '';
+                    return `
+                      <div class="skill-gauge-item">
+                        <span>${escapeHtml(skill.name)}</span>
+                        <div class="skill-gauge-track" aria-label="${escapeHtml(skill.name)} ${skill.percent}%">
+                          <i style="width: ${skill.percent}%"></i>
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </div>
               </article>
             `)
             .join('')}
