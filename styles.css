@@ -1141,6 +1141,7 @@ body[data-theme="light"] .project-modal-panel {
 body[data-theme="light"] .project-modal-meta,
 body[data-theme="light"] .modal-section p,
 body[data-theme="light"] .modal-section li,
+body[data-theme="light"] .skill-gauge-item span,
 body[data-theme="light"] .project-media-empty p {
   color: #475569;
 }
@@ -1606,10 +1607,10 @@ body[data-theme="light"] .article-bookmark-copy small {
 }
 
 .skill-gauge-item span {
-  color: var(--text);
+  color: rgba(232, 237, 247, 0.66);
   font-size: 16px;
-  font-weight: 750;
-  line-height: 1.35;
+  font-weight: 400;
+  line-height: 1.85;
 }
 
 .skill-gauge-track {
