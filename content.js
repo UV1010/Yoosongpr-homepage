@@ -1,4 +1,4 @@
-window.PORTFOLIO_STORAGE_KEY = 'yoo-portfolio-content-published-1781619935019';
+window.PORTFOLIO_STORAGE_KEY = 'yoo-portfolio-content-published-1781717125352';
 window.PORTFOLIO_ADMIN_SESSION_KEY = 'yoo-portfolio-admin-session';
 window.PORTFOLIO_ADMIN_PASSWORD = 'gksksla0216';
 
@@ -525,8 +525,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "articles": [
             {
-              "url": "https://file.notion.so/f/f/3a50077d-16e4-4bec-97b4-ff20057e3a6f/ecea28ac-4e2e-4a80-846c-f139f2d27112/2024_%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A3%E1%86%BC%E1%84%80%E1%85%A1%E1%84%8C%E1%85%A9%E1%86%A8_%E1%84%8B%E1%85%A7%E1%84%85%E1%85%B3%E1%86%B7%E1%84%92%E1%85%A9.pdf?table=block&id=26d27c66-f382-80a0-b842-f8af8a562cca&spaceId=3a50077d-16e4-4bec-97b4-ff20057e3a6f&expirationTimestamp=1781560800000&signature=ybnUQyTduTmFzMX7shVZDKsCRex8UvvD1ZMkY2MbZ4Q&downloadName=2024+%E1%84%8B%E1%85%B5%E1%86%AF%E1%84%8B%E1%85%A3%E1%86%BC%E1%84%80%E1%85%A1%E1%84%8C%E1%85%A9%E1%86%A8_%E1%84%8B%E1%85%A7%E1%84%85%E1%85%B3%E1%86%B7%E1%84%92%E1%85%A9.pdf",
-              "title": "일양사보",
+              "url": "https://drive.google.com/file/d/1cV3yH1WI3LmIxGa8L5VER0WTMrnfDBvA/view?usp=sharing",
+              "title": "일양약품 회사보(2024년 여름호)",
               "description": "",
               "image": ""
             }
@@ -652,7 +652,20 @@ window.DEFAULT_SITE_CONTENT = {
           "results": [
             "• 매월 평균 약 5,000여명 방문, 아이어워즈위원회 주관 ‘I-AWARD 2025’ 중견기업 부문 대상 수상"
           ],
-          "articles": []
+          "articles": [
+            {
+              "url": "www.sebanggroup.com",
+              "title": "세방그룹 홈페이지",
+              "description": "",
+              "image": ""
+            },
+            {
+              "url": "https://www.gbatteryjp.com/",
+              "title": "세방전지 일본지사 홈페이지",
+              "description": "",
+              "image": ""
+            }
+          ]
         },
         {
           "category": "Branding",
@@ -846,19 +859,31 @@ window.DEFAULT_SITE_CONTENT = {
             "• 지속적인 컨텐츠 기획진행"
           ],
           "results": [],
-          "articles": []
+          "articles": [
+            {
+              "url": "https://www.instagram.com/rocketbattery_official/",
+              "title": "세방전지 로케트배터리 인스타그램",
+              "description": "",
+              "image": ""
+            }
+          ]
         },
         {
           "category": "Design",
           "order": "1",
           "company": "세방그룹 · 세방(주)",
           "date": "2024.07",
-          "title": "[디자인]세방리튬배터리 홍보 및 브랜드 디자인",
+          "title": "[디자인]세방그룹 배터리부문 브랜드 디자인",
           "role": "홍보물 제작 및 채용페이지 제작",
-          "body": "B2B 기업인 세방리튬배터리의 브랜드 경쟁력 강화를 위해 차별화된 비주얼 아이덴티티 요소를 개발하고, 디자인 활용 방식에 대한 내부 인식을 개선했습니다. 이를 통해 기업 이미지를 보다 전문적이고 일관성 있게 정립했으며, 채용 및 마케팅 활동 전반에서 디자인 활용도를 높였습니다. 결과적으로 우수 인재 유입과 영업 지원 측면에서 브랜드 활용 가치를 극대화하였습니다.",
+          "body": "B2B 기업인 세방전지와 리튬배터리의 브랜드 경쟁력 강화를 위해 차별화된 비주얼 아이덴티티 요소를 개발하고, 디자인 활용 방식에 대한 내부 인식을 개선했습니다. 이를 통해 기업 이미지를 보다 전문적이고 일관성 있게 정립했으며, 채용 및 마케팅 활동 전반에서 디자인 활용도를 높였습니다. 결과적으로 우수 인재 유입과 영업 지원 측면에서 브랜드 활용 가치를 극대화하였습니다.",
           "media": [
-            "./assets/project-media/lt1.jpg",
-            "./assets/project-media/lt15.jpg",
+            "./assets/project-media/sb3.jpg",
+            "./assets/project-media/sb4.jpg",
+            "./assets/project-media/sb2.jpg",
+            "./assets/project-media/sb7.jpg",
+            "./assets/project-media/sb6.jpg",
+            "./assets/project-media/sb1.jpg",
+            "./assets/project-media/sb8.jpg",
             "./assets/project-media/lt2.jpg",
             "./assets/project-media/lt3.jpg",
             "./assets/project-media/lt4.jpg",
@@ -867,7 +892,6 @@ window.DEFAULT_SITE_CONTENT = {
             "./assets/project-media/lt7.jpg",
             "./assets/project-media/lt8.jpg",
             "./assets/project-media/lt9.jpg",
-            "./assets/project-media/lt10.jpg",
             "./assets/project-media/lt11.jpg",
             "./assets/project-media/lt12.jpg",
             "./assets/project-media/lt13.jpg",
@@ -1237,43 +1261,47 @@ window.DEFAULT_SITE_CONTENT = {
       "subtitle": "기술 스택",
       "groups": [
         {
-          "icon": "⌁",
-          "title": "PR & Media",
+          "icon": "🎨",
+          "title": "Graphic Tool",
           "chips": [
-            "보도자료",
-            "언론 대응",
-            "이슈 모니터링",
-            "광고 심의"
+            "Photoshop | 100",
+            "Illustrator | 100",
+            "InDesign | 90",
+            "Figma | 80",
+            "Premirer Pro | 65"
           ]
         },
         {
-          "icon": "◈",
-          "title": "Brand Marketing",
+          "icon": "💼",
+          "title": "Office Tool",
           "chips": [
-            "브랜드 기획",
-            "프로모션",
-            "OOH 광고",
-            "스포츠 마케팅"
+            "Excel | 90",
+            "Word | 100",
+            "Power Point | 100",
+            "Hancom | 100",
+            "SAP | 50"
           ]
         },
         {
-          "icon": "✦",
-          "title": "Design & Content",
+          "icon": "🤖",
+          "title": "AI Tool",
           "chips": [
-            "CI·BI 관리",
-            "패키지 디자인",
-            "사보 기획",
-            "홈페이지 원고"
+            "Open Ai Codex | 80",
+            "Gemini | 70",
+            "Claude | 70",
+            "Nano Banana | 80",
+            "Midjourney | 70"
           ]
         },
         {
-          "icon": "↯",
-          "title": "Digital & AI",
+          "icon": "📰",
+          "title": "업무 역량",
           "chips": [
-            "SNS 운영",
-            "메타 광고",
-            "AI 자동화",
-            "운영 리포트"
+            "보도기사 작성 | 90",
+            "브랜드 기획 | 90",
+            "광고운영 | 80",
+            "디자인 | 80",
+            "기자 네트워킹 | 70"
           ]
         }
       ]
