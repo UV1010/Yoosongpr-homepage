@@ -1634,6 +1634,10 @@ body[data-theme="light"] .article-bookmark-copy small {
     0 0 16px rgba(112, 183, 255, 0.28);
 }
 
+.skill-gauge-track i.is-full {
+  border-radius: 999px;
+}
+
 body[data-theme="light"] .skill-gauge-track {
   border-color: rgba(15, 23, 42, 0.36);
   background: rgba(15, 23, 42, 0.05);

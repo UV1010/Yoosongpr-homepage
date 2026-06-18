@@ -534,7 +534,7 @@
                       <div class="skill-gauge-item">
                         <span>${escapeHtml(skill.name)}</span>
                         <div class="skill-gauge-track" aria-label="${escapeHtml(skill.name)} ${skill.percent}%">
-                          <i style="width: ${skill.percent}%"></i>
+                          <i class="${skill.percent >= 100 ? 'is-full' : ''}" style="width: ${skill.percent}%"></i>
                         </div>
                       </div>
                     `;
