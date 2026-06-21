@@ -1858,6 +1858,36 @@ footer {
   gap: 8px;
 }
 
+.admin-check-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.035);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.admin-check-field input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--blue);
+}
+
+.admin-check-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.category-hide-field {
+  align-content: start;
+}
+
 .admin-field span {
   color: #cdd5e5;
   font-size: 13px;

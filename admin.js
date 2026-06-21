@@ -70,8 +70,14 @@
       if (!siteContent[lang]?.hero?.featuredProject) {
         siteContent[lang].hero.featuredProject = window.DEFAULT_SITE_CONTENT?.[lang]?.hero?.featuredProject || defaultProjects[0]?.title || '';
       }
+      if (!Array.isArray(siteContent[lang]?.projects?.hiddenCategories)) {
+        siteContent[lang].projects.hiddenCategories = [];
+      }
+      siteContent[lang].projects.hiddenCategories = siteContent[lang].projects.hiddenCategories
+        .filter(category => (siteContent[lang].projects.categories || []).includes(category));
       (siteContent[lang]?.projects?.items || []).forEach(project => {
         const defaultProject = defaultByTitle.get(project.title);
+        project.hidden = Boolean(project.hidden);
         if (!project.company) project.company = defaultProject?.company || fallbackCompany;
         if (!hasUsableMedia(project.media)) {
           project.media = Array.isArray(defaultProject?.media) ? defaultProject.media : [];
@@ -220,6 +226,34 @@
     `;
   }
 
+  function checkboxField(label, path) {
+    const value = Boolean(getByPath(path));
+    return `
+      <label class="admin-check-field">
+        <input type="checkbox" data-path="${path}" data-boolean="true" ${value ? 'checked' : ''} />
+        <span>${label}</span>
+      </label>
+    `;
+  }
+
+  function categoryHideField(label, path, categories) {
+    const hiddenCategories = getByPath(path) || [];
+    return `
+      <div class="admin-field category-hide-field" data-category-hidden-path="${path}">
+        <span>${label}</span>
+        <div class="admin-check-list">
+          ${(categories || []).map(category => `
+            <label class="admin-check-field">
+              <input type="checkbox" value="${escapeHtml(category)}" ${hiddenCategories.includes(category) ? 'checked' : ''} />
+              <span>${escapeHtml(category)}</span>
+            </label>
+          `).join('')}
+        </div>
+        <small>체크한 카테고리는 홈페이지 프로젝트 탭과 목록에서 숨겨집니다.</small>
+      </div>
+    `;
+  }
+
   function arrayField(label, path, options = {}) {
     const value = getByPath(path) || [];
     const id = `field-${path.replaceAll('.', '-')}`;
@@ -300,7 +334,9 @@
   function collect() {
     form.querySelectorAll('[data-path]').forEach(input => {
       const current = getByPath(input.dataset.path);
-      const value = input.dataset.articles === 'true'
+      const value = input.dataset.boolean === 'true'
+        ? input.checked
+        : input.dataset.articles === 'true'
         ? input.value.split('\n').map(line => {
           const parts = line.includes(' / ') ? line.split(' / ') : line.split('|');
           const [url = '', title = '', description = '', image = ''] = parts.map(v => v.trim());
@@ -310,6 +346,10 @@
         ? input.value.split('\n').map(v => input.dataset.preserveIndent === 'true' ? v.replace(/\s+$/g, '') : v.trim()).filter(v => v.trim())
         : input.value;
       setByPath(input.dataset.path, value);
+    });
+    form.querySelectorAll('[data-category-hidden-path]').forEach(group => {
+      const hidden = Array.from(group.querySelectorAll('input[type="checkbox"]:checked')).map(input => input.value);
+      setByPath(group.dataset.categoryHiddenPath, hidden);
     });
   }
 
@@ -323,6 +363,7 @@
   }
 
   function editorField(path, config) {
+    if (config.kind === 'checkbox') return checkboxField(config.label, `${path}.${config.key}`);
     if (config.kind === 'textarea') return field(config.label, `${path}.${config.key}`, 'textarea');
     if (config.kind === 'lines') return arrayField(config.label, `${path}.${config.key}`, { preserveIndent: true, helper: config.helper });
     if (config.kind === 'array') return arrayField(config.label, `${path}.${config.key}`, { helper: config.helper });
@@ -334,12 +375,13 @@
 
   function projectEditor(item, path, fields) {
     const articleCount = Array.isArray(item.articles) ? item.articles.length : 0;
+    const visibilityLabel = item.hidden ? '숨김' : '노출';
     return `
       <details class="editor-card project-editor-card">
         <summary class="project-editor-summary">
           <span class="project-editor-category">${escapeHtml(item.category || '카테고리 없음')}</span>
           <strong>${escapeHtml(item.title || '제목 없음')}</strong>
-          <span class="project-editor-status">작성기사 및 제작물 ${articleCount}개</span>
+          <span class="project-editor-status">${visibilityLabel} · 작성기사 및 제작물 ${articleCount}개</span>
           <span class="project-editor-toggle">펼치기</span>
         </summary>
         <div class="project-editor-fields">
@@ -466,9 +508,11 @@
         ${field('섹션 제목', `${lang}.projects.title`)}
         ${field('서브타이틀', `${lang}.projects.subtitle`)}
         ${arrayField('카테고리', `${lang}.projects.categories`)}
+        ${categoryHideField('숨김 처리할 카테고리', `${lang}.projects.hiddenCategories`, categoryOptions)}
       </div>
       ${(content[lang].projects.items || []).map((_, index) =>
         projectEditor(_, `${lang}.projects.items.${index}`, [
+          { label: '이 프로젝트 숨김', key: 'hidden', kind: 'checkbox' },
           { label: '카테고리', key: 'category', kind: 'select', options: categoryOptions },
           { label: '노출 순서', key: 'order', kind: 'select', options: orderOptions },
           { label: '경력 회사명 선택', key: 'company', kind: 'select', options: companyOptions },

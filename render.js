@@ -378,9 +378,11 @@
   }
 
   function renderProjects(data) {
-    const categories = data.projects.categories || [];
-    const items = data.projects.items || [];
-    const indexedItems = items.map((item, itemIndex) => ({ item, itemIndex }));
+    const hiddenCategories = new Set(data.projects.hiddenCategories || []);
+    const categories = (data.projects.categories || []).filter(category => !hiddenCategories.has(category));
+    const indexedItems = (data.projects.items || [])
+      .map((item, itemIndex) => ({ item, itemIndex }))
+      .filter(entry => !entry.item.hidden && !hiddenCategories.has(entry.item.category));
     return `
       <section id="projects" class="section project-section">
         <div class="section-title"><h2>${escapeHtml(data.projects.title)}</h2><p>${escapeHtml(data.projects.subtitle)}</p></div>
