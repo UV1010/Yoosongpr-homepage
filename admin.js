@@ -249,7 +249,7 @@
             </label>
           `).join('')}
         </div>
-        <small>체크한 카테고리는 홈페이지 프로젝트 탭과 목록에서 숨겨집니다.</small>
+        <small>체크한 카테고리는 홈페이지 프로젝트 탭과 목록에서 숨겨지고, 체크를 풀면 다시 게시됩니다.</small>
       </div>
     `;
   }
@@ -375,7 +375,7 @@
 
   function projectEditor(item, path, fields) {
     const articleCount = Array.isArray(item.articles) ? item.articles.length : 0;
-    const visibilityLabel = item.hidden ? '숨김' : '노출';
+    const visibilityLabel = item.hidden ? '숨김' : '게시중';
     return `
       <details class="editor-card project-editor-card">
         <summary class="project-editor-summary">
@@ -512,7 +512,7 @@
       </div>
       ${(content[lang].projects.items || []).map((_, index) =>
         projectEditor(_, `${lang}.projects.items.${index}`, [
-          { label: '이 프로젝트 숨김', key: 'hidden', kind: 'checkbox' },
+          { label: '이 프로젝트 숨김 처리 (체크 해제 시 다시 게시)', key: 'hidden', kind: 'checkbox' },
           { label: '카테고리', key: 'category', kind: 'select', options: categoryOptions },
           { label: '노출 순서', key: 'order', kind: 'select', options: orderOptions },
           { label: '경력 회사명 선택', key: 'company', kind: 'select', options: companyOptions },
