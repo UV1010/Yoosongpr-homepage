@@ -1,4 +1,4 @@
-window.PORTFOLIO_STORAGE_KEY = 'yoo-portfolio-content-published-1784607562437';
+window.PORTFOLIO_STORAGE_KEY = 'yoo-portfolio-content-published-1784610855713';
 window.PORTFOLIO_ADMIN_SESSION_KEY = 'yoo-portfolio-admin-session';
 window.PORTFOLIO_ADMIN_PASSWORD = 'gksksla0216';
 
@@ -406,10 +406,34 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "articles": [
             {
-              "url": "https://dealsite.co.kr/articles/88148",
-              "title": "일양약품, 놀텍·슈펙트 등 신약 경쟁력 강화 박차",
-              "description": "일양약품이 자체개발 신약 놀텍과 슈펙트의 시장 경쟁력 강화를 위해 박차를 가하고 있다. 이들 신약은 시판 후 매출 부진 등으로 시장에서 사라진 일부 신약과 달리 꾸준히 처방액을 늘리며 선전하고 있다.",
-              "image": "https://dtd31o1ybbmk8.cloudfront.net/photos/6d0823c9a6a3daf0267141df981e37cd/thumb.jpg"
+              "url": "https://www.medisobizanews.com/news/articleView.html?idxno=69454",
+              "title": "일양약품, 항궤양제 '놀텍' HSVㆍHIV 세포 출아 저해 확인",
+              "description": "일양약품(사장 김동연)은 항궤양제 '놀텍'(성분명 일라프라졸ㆍ사진)의 HSV(헤르페스 바이러스)와 HIV(인체면역결핍 바이러스)의 세포 출아 저해효과 결과가 ‘의학 분야 학술논문 사전 공개 사이트인 바이오 아카이브(BioRxiv)’에 게재되었다고 6일 밝혔다.",
+              "image": "https://cdn.medisobizanews.com/news/photo/202005/69454_57341_1546.jpg"
+            },
+            {
+              "url": "https://www.kpanews.co.kr/news/articleView.html?idxno=211683",
+              "title": "일양약품 \"슈펙트, 코로나19 바이러스 70% 소멸…유효성 확인\"",
+              "description": "일양약품(사장 김동연)은 자사의 코로나19 바이러스(COVID-19) 치료 후보물질의 검증을 위해 고려대학교 의과대학(학장 윤영욱) 생물안전센터 내 BSL-3 시설 연구팀에 의뢰한 결과 코로나19 바이러스에 대한 탁월한 유효성을 확인했다고 13일 밝혔다.",
+              "image": "https://cdn.kpanews.co.kr/news/photo/202003/211683_93282_1430.jpg"
+            },
+            {
+              "url": "https://www.dailymedi.com/news/news_view.php?wr_id=818941",
+              "title": "일양 국산 항궤양제 놀텍, 최대 실적 기대",
+              "description": "일양약품은 올 1분기 처방실적 기준으로 항궤양제 놀텍이 61억8000만원의 매출을 달성해 지난해 같은 기간 47억2000만원 대비 30.9% 성장했다고 24일 밝혔다.",
+              "image": "https://cdn.kpanews.co.kr/news/photo/202604/533450_441976_2441.jpg"
+            },
+            {
+              "url": "https://www.docdocdoc.co.kr/news/articleView.html?idxno=1066728",
+              "title": "일양약품, 파킨슨병 신약 물질 유럽 임상 추진",
+              "description": "일양약품(대표 김동연)이 자체 개발한 신약을 파킨슨 치료제로 개발하기 위해 유럽에서 본격적인 임상을 추진한다고 27일 밝혔다.",
+              "image": "https://cdn.docdocdoc.co.kr/news/photo/201903/1066728_1125558_4253.jpg"
+            },
+            {
+              "url": "https://www.medigatenews.com/news/3702323533",
+              "title": "일양약품 '놀텍', 올해 멕시코 수출 전년대비 2배 이상 성장",
+              "description": "일양약품은 멕시코로 수출되는 국산 14호 신약 놀텍의 멕시코시장 점유율 및 현지화가 빠르게 진행되는 것에 힘입어 올해 수출 실적은 전년대비 2배 이상의 성장이 예상된다고 11일 밝혔다.",
+              "image": "https://www.medigatenews.com/file/news/118088"
             },
             {
               "url": "https://www.mk.co.kr/news/it/9659181",
@@ -505,7 +529,8 @@ window.DEFAULT_SITE_CONTENT = {
           "media": [
             "./assets/project-media/mega1.png",
             "./assets/project-media/mega2.jpg",
-            "./assets/project-media/mega3.jpg"
+            "./assets/project-media/mega3.jpg",
+            "./assets/project-media/mega4.jpg"
           ],
           "chips": [
             "회사보",
@@ -590,7 +615,7 @@ window.DEFAULT_SITE_CONTENT = {
           "media": [
             "https://youtu.be/8DygzQ0HdtM?si=mjQ2nq34dIkUg70v",
             "./assets/project-media/1781360061814-765dcc-2-01.jpg",
-            "./assets/project-media/1781360072163-2bbe86-2-02.jpg",
+            "./assets/project-media/rex1.jpg",
             "./assets/project-media/1781360082874-b0cb33-2-03.jpg",
             "./assets/project-media/1781360091102-22d0bd-2-04.jpg",
             "./assets/project-media/1781360103019-3b16e9-2-12.jpg"
@@ -918,11 +943,10 @@ window.DEFAULT_SITE_CONTENT = {
             "./assets/project-media/sb3.jpg",
             "./assets/project-media/sb4.jpg",
             "./assets/project-media/sb2.jpg",
-            "./assets/project-media/sb7.jpg",
-            "./assets/project-media/sb6.jpg",
             "./assets/project-media/sb1.jpg",
             "./assets/project-media/sb8.jpg",
             "./assets/project-media/lt2.jpg",
+            "./assets/project-media/lt16.jpg",
             "./assets/project-media/lt3.jpg",
             "./assets/project-media/lt4.jpg",
             "./assets/project-media/lt5.jpg",
@@ -933,7 +957,9 @@ window.DEFAULT_SITE_CONTENT = {
             "./assets/project-media/lt11.jpg",
             "./assets/project-media/lt12.jpg",
             "./assets/project-media/lt13.jpg",
-            "./assets/project-media/lt14.jpg"
+            "./assets/project-media/lt14.jpg",
+            "./assets/project-media/sb7.jpg",
+            "./assets/project-media/sb6.jpg"
           ],
           "chips": [
             "브랜드디자인",
