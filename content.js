@@ -1,4 +1,4 @@
-window.PORTFOLIO_STORAGE_KEY = 'yoo-portfolio-content-published-1781717125352';
+window.PORTFOLIO_STORAGE_KEY = 'yoo-portfolio-content-published-1784607562437';
 window.PORTFOLIO_ADMIN_SESSION_KEY = 'yoo-portfolio-admin-session';
 window.PORTFOLIO_ADMIN_PASSWORD = 'gksksla0216';
 
@@ -265,7 +265,7 @@ window.DEFAULT_SITE_CONTENT = {
       "categories": [
         "PR",
         "Branding",
-        "SNS",
+        "SNS / Media",
         "Design",
         "AI / DX"
       ],
@@ -360,7 +360,8 @@ window.DEFAULT_SITE_CONTENT = {
               "description": "세방그룹의 사회복지재단인 세방이의순재단은 서울 강남구 위치한 세방그룹 본사에서 한국 한부모 가족 복지 시설협회와의 지원금 전달식을 양 기관의 임직원이 참석한 가운데 개최했다고 27일 밝혔다.",
               "image": "https://cdn.kdpress.co.kr/news/photo/202510/200170_127208_4332.jpg"
             }
-          ]
+          ],
+          "hidden": false
         },
         {
           "category": "PR",
@@ -446,7 +447,8 @@ window.DEFAULT_SITE_CONTENT = {
               "description": "경기도일자리재단은 일양약품㈜과 지난 30일 채이배 경기도일자리재단 대표이사, 최규영 일양약품㈜ 전무 등 관계자 10여 명이 참석한 가운데 ‘K-제약·바이오 산업의 안정적인 일자리 창출을 위한 업무협약’을 체결했다.",
               "image": "https://cdn.mtnews.net/news/photo/202308/16840_42921_4736.jpg"
             }
-          ]
+          ],
+          "hidden": false
         },
         {
           "category": "PR",
@@ -489,7 +491,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "company": "세방그룹 · 세방(주)",
           "order": "3",
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "PR",
@@ -530,7 +533,8 @@ window.DEFAULT_SITE_CONTENT = {
               "description": "",
               "image": ""
             }
-          ]
+          ],
+          "hidden": false
         },
         {
           "category": "PR",
@@ -562,7 +566,8 @@ window.DEFAULT_SITE_CONTENT = {
             "• 연간 예산 2억원, KBS 2FM ‘박명수 라디오쇼’, ‘김태훈의 프리웨이’ 주요 프로그램 광고 송출",
             "• 전국 송출 기준, 매일 713회 송출, 월 21,390회 송출"
           ],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Branding",
@@ -612,7 +617,8 @@ window.DEFAULT_SITE_CONTENT = {
               "description": "대한민국을 대표하는 배터리 브랜드 ‘로케트 배터리’ 로 잘 알려진 세방전지에서 하이브리드 피트니스 레이스 대회 REXTREME(렉스트림)을 오는 1월 24일 토요일 일산 킨텍스 8B홀에서 개최한다.",
               "image": "https://cdn.e2news.com/news/photo/202601/326762_225081_2740.jpg"
             }
-          ]
+          ],
+          "hidden": false
         },
         {
           "category": "Branding",
@@ -665,7 +671,8 @@ window.DEFAULT_SITE_CONTENT = {
               "description": "",
               "image": ""
             }
-          ]
+          ],
+          "hidden": false
         },
         {
           "category": "Branding",
@@ -709,7 +716,8 @@ window.DEFAULT_SITE_CONTENT = {
               "description": "양약품은 환경을 보호하기 위해 작은 실천으로 임직원들이 함께 동참할 수 있는 캠페인 ‘환경을 위한 일양인들의 작은 실천 한 걸음’을 진행했다고 17일 전했다.",
               "image": "https://cdn.pointdaily.co.kr/news/photo/202308/169075_151018_1320.jpeg"
             }
-          ]
+          ],
+          "hidden": false
         },
         {
           "category": "Branding",
@@ -796,7 +804,8 @@ window.DEFAULT_SITE_CONTENT = {
               "description": "국내 연축전지 기업 세방전지가 오는 17일 부산 사직야구장 광장에서 '로케트배터리 매치데이' 행사를 개최한다고 16일 밝혔다.",
               "image": "https://image.ajunews.com/content/image/2025/05/15/20250515142402202847.jpeg"
             }
-          ]
+          ],
+          "hidden": false
         },
         {
           "category": "Branding",
@@ -827,10 +836,11 @@ window.DEFAULT_SITE_CONTENT = {
           "results": [],
           "company": "세방그룹 · 세방(주)",
           "order": "9",
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
-          "category": "SNS",
+          "category": "SNS / Media",
           "order": "12",
           "company": "세방그룹 · 세방(주)",
           "date": "2025.02 - 2025.06",
@@ -866,7 +876,35 @@ window.DEFAULT_SITE_CONTENT = {
               "description": "",
               "image": ""
             }
-          ]
+          ],
+          "hidden": false
+        },
+        {
+          "category": "SNS / Media",
+          "order": "28",
+          "company": "세방그룹 · 세방(주)",
+          "date": "2025.06.27 - 2025.07.11",
+          "title": "25년 세방그룹 1st LEADERS CONFERENCE",
+          "role": "역할",
+          "body": "2025년 6월 27일 삼성동 인터컨티넨탈 호텔 카네이션홀에서 개최된 '세방그룹 최초 임원 워크숍'의 기록 영상을 촬영부터 기획, 편집까지 전 과정 단독으로 진행했습니다.\n그룹 계열사의 전반적인 실적 발표와 외부 및 회장님 특강 등 핵심 세션의 흐름을 밀도 있게 담아내는 동시에, 참석한 임원진이 돋보일 수 있도록 화면을 연출·구성했습니다. 단순 현장 기록을 넘어 그룹의 핵심 메시지와 조직적 결속력을 효과적으로 전달할 수 있도록 아카이브 영상으로 완성했습니다.",
+          "media": [
+            "./assets/project-media/main_LEADERS.jpg",
+            "https://youtu.be/MCod5MvwhFk"
+          ],
+          "chips": [
+            "영상촬영",
+            "영상편집"
+          ],
+          "tasks": [
+            "• 영상촬영 및 행사 스케치, 스냅사진 촬영",
+            "• 사진편집, 색보정 등 후 편집 진행",
+            "• 영상촬영(DSRL, 아이폰 촬영)",
+            "• Premirer Pro를 활용한 영상편집",
+            "• 회장님 및 임원 보고진행, 사내 게시판 업로드"
+          ],
+          "results": [],
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -906,7 +944,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -933,7 +972,8 @@ window.DEFAULT_SITE_CONTENT = {
           "results": [],
           "company": "일양약품(주)",
           "order": "5",
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -959,7 +999,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -980,7 +1021,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -1002,7 +1044,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -1023,7 +1066,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -1043,7 +1087,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -1071,7 +1116,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -1091,7 +1137,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -1112,7 +1159,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -1133,7 +1181,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -1155,7 +1204,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -1175,7 +1225,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "tasks": [],
           "results": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "AI / DX",
@@ -1215,7 +1266,8 @@ window.DEFAULT_SITE_CONTENT = {
           ],
           "company": "세방그룹 · 세방(주)",
           "order": "6",
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "AI / DX",
@@ -1252,9 +1304,11 @@ window.DEFAULT_SITE_CONTENT = {
             "• AI 활용 신청자 40% 증가"
           ],
           "order": "7",
-          "articles": []
+          "articles": [],
+          "hidden": false
         }
-      ]
+      ],
+      "hiddenCategories": []
     },
     "skills": {
       "title": "역량",
@@ -1532,7 +1586,8 @@ window.DEFAULT_SITE_CONTENT = {
             "./assets/project-media/pr1.jpg",
             "./assets/project-media/pr2.jpg"
           ],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Branding",
@@ -1564,7 +1619,8 @@ window.DEFAULT_SITE_CONTENT = {
           "company": "Sebang Group · Sebang Co., Ltd.",
           "order": "2",
           "media": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Branding",
@@ -1596,7 +1652,8 @@ window.DEFAULT_SITE_CONTENT = {
           "company": "Sebang Group · Sebang Co., Ltd.",
           "order": "3",
           "media": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "SNS",
@@ -1626,7 +1683,8 @@ window.DEFAULT_SITE_CONTENT = {
           "company": "Sebang Group · Sebang Co., Ltd.",
           "order": "4",
           "media": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "Design",
@@ -1656,7 +1714,8 @@ window.DEFAULT_SITE_CONTENT = {
           "company": "Ilyang Pharmaceutical Co., Ltd.",
           "order": "5",
           "media": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         },
         {
           "category": "AI / DX",
@@ -1686,9 +1745,11 @@ window.DEFAULT_SITE_CONTENT = {
           "company": "Sebang Group · Sebang Co., Ltd.",
           "order": "6",
           "media": [],
-          "articles": []
+          "articles": [],
+          "hidden": false
         }
-      ]
+      ],
+      "hiddenCategories": []
     },
     "skills": {
       "title": "Skills",
